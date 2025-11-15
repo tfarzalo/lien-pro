@@ -1,29 +1,78 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'sonner';
+import { ErrorBoundary } from './components/common/ErrorBoundary';
+import { LandingPage } from './pages/LandingPage';
+import { DashboardPage } from './pages/DashboardPage';
+import { EnhancedDashboardPage } from './pages/EnhancedDashboardPageV2';
+import { AssessmentPage } from './pages/AssessmentPage';
+import { CheckoutPage } from './pages/CheckoutPage';
+import { OrderSuccessPage } from './pages/OrderSuccessPage';
+import BrowseKitsPage from './pages/BrowseKitsPage';
+import FormCompletionPage from './pages/FormCompletionPage';
+import AuthPage from './pages/AuthPage';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import { AdminRoute } from './components/admin/AdminRoute';
+import { AdminLayout } from './components/admin/AdminLayout';
+import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
+import { AdminSubmissionsPage } from './pages/admin/AdminSubmissionsPage';
+import { SubmissionDetailPage } from './pages/admin/SubmissionDetailPage';
+import { AdminDeadlinesPage } from './pages/admin/AdminDeadlinesPage';
+import { AdminUsersPage } from './pages/admin/AdminUsersPage';
+import { LearnLayout } from './pages/learn/LearnLayout';
+import { LearnIndexPage } from './pages/learn/LearnIndexPage';
+import { WhatIsALienPage } from './pages/learn/WhatIsALienPage';
+import { WhoCanFilePage } from './pages/learn/WhoCanFilePage';
+import { PreliminaryNoticePage } from './pages/learn/PreliminaryNoticePage';
+import { ResidentialVsCommercialPage } from './pages/learn/ResidentialVsCommercialPage';
+
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">Lien Professor</h1>
-        </div>
-      </header>
-      <main>
-        <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-          <div className="px-4 py-6 sm:px-0">
-            <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 flex items-center justify-center">
-              <div className="text-center">
-                <h2 className="text-2xl font-semibold text-gray-900 mb-4">
-                  Welcome to Lien Professor
-                </h2>
-                <p className="text-gray-600">
-                  Texas Lien Solutions Made Simple
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
-    </div>
-  )
+    <ErrorBoundary>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<AuthPage />} />
+          <Route path="/assessment" element={<AssessmentPage />} />
+          <Route path="/kits" element={<BrowseKitsPage />} />
+
+          {/* Learn/Education Routes */}
+          <Route path="/learn" element={<LearnLayout />}>
+            <Route index element={<LearnIndexPage />} />
+            <Route path="what-is-a-lien" element={<WhatIsALienPage />} />
+            <Route path="who-can-file" element={<WhoCanFilePage />} />
+            <Route path="preliminary-notice" element={<PreliminaryNoticePage />} />
+            <Route path="residential-vs-commercial" element={<ResidentialVsCommercialPage />} />
+          </Route>
+
+          {/* Protected Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<EnhancedDashboardPage />} />
+            <Route path="/dashboard-old" element={<DashboardPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/checkout/success" element={<OrderSuccessPage />} />
+            <Route path="/projects/:projectId/forms/:formId" element={<FormCompletionPage />} />
+          </Route>
+
+          {/* Admin Routes */}
+          <Route element={<AdminRoute />}>
+            <Route path="/admin/*" element={
+              <AdminLayout>
+                <Routes>
+                  <Route index element={<AdminDashboardPage />} />
+                  <Route path="submissions" element={<AdminSubmissionsPage />} />
+                  <Route path="submissions/:submissionId" element={<SubmissionDetailPage />} />
+                  <Route path="deadlines" element={<AdminDeadlinesPage />} />
+                  <Route path="users" element={<AdminUsersPage />} />
+                </Routes>
+              </AdminLayout>
+            } />
+          </Route>
+        </Routes>
+      </Router>
+      <Toaster position="top-right" richColors />
+    </ErrorBoundary>
+  );
 }
 
-export default App
+export default App;

@@ -78,10 +78,31 @@ This application is built with a modern, scalable architecture:
 - [x] Development tooling (ESLint, Prettier)
 - [x] Icon system with Lucide React
 - [x] Authentication guard components
-- [ ] Supabase database schema
-- [ ] Authentication flows
-- [ ] UI component library
-- [ ] Business logic implementation
+- [x] **Supabase database schema** - Complete PostgreSQL schema with RLS
+- [x] **TypeScript types** - Type-safe database interfaces
+- [x] **Data access layer** - Service functions for all major entities
+- [x] **React Query hooks** - useLienKits, useOrders, useAssessments, useDashboard
+- [x] **Example dashboard** - Fully implemented with live data
+- [x] Authentication flows
+- [x] UI component library
+- [ ] Business logic implementation (assessment scoring, PDF generation)
+- [ ] Payment integration
+- [ ] Attorney portal features
+
+## 📖 Documentation
+
+### Architecture & Development Guides
+
+- **[Data Access Layer](./docs/DATA_ACCESS_LAYER.md)** - Complete guide to TypeScript types, service functions, and React Query hooks
+- **[Quick Start Guide](./docs/QUICK_START_GUIDE.md)** - Fast examples for common data access patterns
+- **[Database Schema](./supabase/migrations/README.md)** - PostgreSQL schema, RLS policies, and migration instructions
+
+### Key Concepts
+
+- **TypeScript Types** (`src/types/database.ts`) - Type-safe interfaces for all database tables
+- **Service Layer** (`src/services/`) - Business logic and database access functions
+- **React Query Hooks** (`src/hooks/`) - Data fetching and caching with React Query
+- **Example Implementation** (`src/pages/EnhancedDashboardPage.tsx`) - Real-world usage example
 
 ## 🛠️ Development
 
@@ -117,7 +138,7 @@ npm run type-check
 3. **Check for errors**: `npm run lint` and `npm run type-check`
 4. **Format code**: `npm run format`
 5. **Test your changes** in the browser
-6. **Commit with conventional commits**
+6. **Commit with conventional commits`
 
 ## 📁 Project Structure
 
