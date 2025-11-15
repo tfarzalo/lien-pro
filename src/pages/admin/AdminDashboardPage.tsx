@@ -18,7 +18,6 @@ import {
   Clock,
   CheckCircle,
   TrendingUp,
-  Activity,
   Calendar,
 } from 'lucide-react';
 import { getAdminDashboardStats, getAllSubmissions, getAllDeadlinesForAdmin } from '@/services/adminQueriesService';

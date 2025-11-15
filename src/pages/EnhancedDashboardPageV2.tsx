@@ -4,6 +4,7 @@
 // =====================================================
 
 import { AppShell } from '@/components/layout/AppShell'
+import { Header } from '@/components/layout/Header'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent } from '@/components/ui/Card'
@@ -43,7 +44,7 @@ export function EnhancedDashboardPage() {
     // Loading state
     if (isDashboardLoading || isStatsLoading) {
         return (
-            <AppShell>
+            <AppShell header={<Header />}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                     <div className="animate-pulse space-y-8">
                         <div className="h-32 bg-slate-200 rounded-lg"></div>
@@ -69,68 +70,68 @@ export function EnhancedDashboardPage() {
     ) || []
 
     return (
-        <AppShell>
+        <AppShell header={<Header />}>
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
                 {/* Page Header */}
                 <PageHeader
-                    title={`Welcome back, ${user?.user_metadata?.full_name || user?.email || 'User'}!`}
-                    subtitle="Manage your lien kits, track deadlines, and stay compliant"
-                    actions={
-                        <Button onClick={() => navigate('/assessment')}>
-                            <PlayCircle className="mr-2 h-4 w-4" />
-                            Take Assessment
-                        </Button>
-                    }
-                />
+                        title={`Welcome back, ${user?.user_metadata?.full_name || user?.email || 'User'}!`}
+                        subtitle="Manage your lien kits, track deadlines, and stay compliant"
+                        actions={
+                            <Button onClick={() => navigate('/assessment')}>
+                                <PlayCircle className="mr-2 h-4 w-4" />
+                                Take Assessment
+                            </Button>
+                        }
+                    />
 
-                {/* Urgent Alert */}
-                {urgentDeadlines.length > 0 && (
-                    <Alert variant="danger">
-                        <AlertCircle className="h-4 w-4" />
-                        <AlertTitle>Urgent Deadlines</AlertTitle>
-                        <AlertDescription>
-                            You have {urgentDeadlines.length} deadline{urgentDeadlines.length > 1 ? 's' : ''} due
-                            within 7 days. Review them below to stay compliant.
-                        </AlertDescription>
-                    </Alert>
-                )}
+                    {/* Urgent Alert */}
+                    {urgentDeadlines.length > 0 && (
+                        <Alert variant="danger">
+                            <AlertCircle className="h-4 w-4" />
+                            <AlertTitle>Urgent Deadlines</AlertTitle>
+                            <AlertDescription>
+                                You have {urgentDeadlines.length} deadline{urgentDeadlines.length > 1 ? 's' : ''} due
+                                within 7 days. Review them below to stay compliant.
+                            </AlertDescription>
+                        </Alert>
+                    )}
 
-                {/* Quick Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <StatCard
-                        title="Your Kits"
-                        value={stats?.ownedKits || 0}
-                        icon={Package}
-                        color="brand"
-                        isLoading={isStatsLoading}
-                    />
-                    <StatCard
-                        title="Active Projects"
-                        value={stats?.activeProjects || 0}
-                        icon={FileText}
-                        color="blue"
-                        isLoading={isStatsLoading}
-                    />
-                    <StatCard
-                        title="Upcoming Deadlines"
-                        value={stats?.upcomingDeadlines || 0}
-                        icon={Clock}
-                        color="warning"
-                        isLoading={isStatsLoading}
-                    />
-                    <StatCard
-                        title="Assessments"
-                        value={stats?.completedAssessments || 0}
-                        icon={CheckCircle}
-                        color="success"
-                        isLoading={isStatsLoading}
-                    />
-                </div>
+                    {/* Quick Stats */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <StatCard
+                            title="Your Kits"
+                            value={stats?.ownedKits || 0}
+                            icon={Package}
+                            color="brand"
+                            isLoading={isStatsLoading}
+                        />
+                        <StatCard
+                            title="Active Projects"
+                            value={stats?.activeProjects || 0}
+                            icon={FileText}
+                            color="blue"
+                            isLoading={isStatsLoading}
+                        />
+                        <StatCard
+                            title="Upcoming Deadlines"
+                            value={stats?.upcomingDeadlines || 0}
+                            icon={Clock}
+                            color="warning"
+                            isLoading={isStatsLoading}
+                        />
+                        <StatCard
+                            title="Completed Assessments"
+                            value={stats?.completedAssessments || 0}
+                            icon={CheckCircle}
+                            color="success"
+                            isLoading={isStatsLoading}
+                        />
+                    </div>
 
-                {/* Main Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    {/* Left Column - Kits and Projects */}
-                    <div className="lg:col-span-2 space-y-8">
+                    {/* Main Content Grid */}
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        {/* Left Column - Kits and Projects */}
+                        <div className="lg:col-span-2 space-y-8">
                         {/* Your Kits Section */}
                         <section>
                             <div className="flex items-center justify-between mb-6">

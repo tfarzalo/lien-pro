@@ -50,7 +50,7 @@ function getRecommendation(answers: AssessmentAnswers): RecommendationResult {
   }
 }
 
-function calculateScore(kit: string, answers: AssessmentAnswers): number {
+function calculateScore(_kit: string, answers: AssessmentAnswers): number {
   let score = 0.5 // Base score
   
   // Role weighting

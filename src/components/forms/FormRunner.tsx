@@ -40,9 +40,9 @@ interface FormRunnerProps {
 
 export function FormRunner({
     template,
-    projectId,
-    userId,
-    existingResponseId,
+    projectId: _projectId,
+    userId: _userId,
+    existingResponseId: _existingResponseId,
     initialValues = {},
     commonFields,
     onSave,

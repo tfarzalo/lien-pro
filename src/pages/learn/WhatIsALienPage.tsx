@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
-import { ArrowRight, BookOpen, CheckCircle, AlertTriangle, FileText, Scale, Clock, Shield } from 'lucide-react'
+import { ArrowRight, BookOpen, CheckCircle, AlertTriangle, Scale, Clock, Shield } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 export function WhatIsALienPage() {
