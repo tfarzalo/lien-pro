@@ -11,7 +11,7 @@ const benefits = [
 export const HeroSection: React.FC = () => {
 	return (
 		<section className="bg-gradient-to-b from-brand-50 via-white to-slate-50 dark:from-slate-950 dark:via-slate-950 dark:to-slate-950 pt-12 md:pt-16 pb-0 text-slate-900 dark:text-white overflow-hidden">
-			<div className="max-w-screen-2xl mx-auto px-6">
+			<div className="max-w-screen-2xl mx-auto pl-10 pr-6">
 				{/* Mobile: Chalkboard at Top */}
 				<div className="block lg:hidden mb-8 animate-fade-in-up">
 					<div className="relative max-w-md mx-auto">

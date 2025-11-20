@@ -57,13 +57,13 @@ const privateProjectResources = [
         description: 'Enforcement options when liens aren\'t enough',
         link: '/learn',
     },
-    {
-        icon: MessageSquare,
-        title: 'Ask a Construction Lawyer',
-        description: 'Get expert legal advice for your specific situation',
-        link: '/assessment',
-        badge: 'Free',
-    },
+  {
+    icon: MessageSquare,
+    title: 'Ask a Lawyer',
+    description: 'Get expert legal advice for your specific situation',
+    link: '/assessment',
+    badge: 'Free',
+  },
 ];
 
 const governmentProjectResources = [

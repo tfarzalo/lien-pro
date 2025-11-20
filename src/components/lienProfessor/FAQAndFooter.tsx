@@ -62,8 +62,8 @@ export const FinalCTASection: React.FC = () => (
         >
           Start Free Assessment
         </Link>
-        <Link to="/contact" className="text-white/80 hover:text-white text-sm font-semibold underline underline-offset-4">
-          Talk to a Construction Lawyer
+        <Link to="/contact" className="text-white/80 hover:text-white text-sm font-semibold underline underline-offset-4 whitespace-nowrap">
+          Talk with a Lawyer
         </Link>
       </div>
     </div>

@@ -42,13 +42,13 @@ const mistakes = [
 
 export const Top5MistakesSection: React.FC = () => {
   return (
-    <section className="py-12 bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+    <section className="py-12 bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-12">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 dark:bg-red-950/50 mb-4">
-                        <AlertTriangle className="h-5 w-5 text-red-600 dark:text-red-400" />
-                        <span className="text-sm font-semibold text-red-700 dark:text-red-300 uppercase tracking-wide">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-950/50 mb-4">
+                        <AlertTriangle className="h-5 w-5 text-amber-600 dark:text-amber-400" />
+                        <span className="text-sm font-semibold text-amber-700 dark:text-amber-300 uppercase tracking-wide">
                             Avoid These Critical Errors
                         </span>
                     </div>

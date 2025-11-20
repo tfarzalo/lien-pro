@@ -4,7 +4,7 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const cards = [
   {
-    name: 'DIY Lien Kits',
+    name: 'Do It Yourself Lien Kits',
     subtitle: 'Attorney-drafted forms and instructions you can reuse.',
     bullets: [
       'State-specific lien and payment bond templates',
@@ -17,8 +17,8 @@ const cards = [
     featured: false,
   },
   {
-    name: 'Guided + Attorney Review',
-    subtitle: 'Use a kit and have a construction lawyer review it before you send.',
+    name: 'Self-Guided + Attorney Review',
+    subtitle: 'Use a kit and have a lawyer review it before you send.',
     bullets: [
       'Everything in DIY kits',
       'Attorney review of your completed documents',
@@ -30,15 +30,15 @@ const cards = [
     featured: true,
   },
   {
-    name: 'Full Representation',
-    subtitle: 'Let a construction lawyer handle the entire lien process.',
+    name: 'Top to Bottom Representation',
+    subtitle: 'Let a lawyer handle the entire lien process.',
     bullets: [
       'Evaluation of your claim and deadlines',
       'Preparation, filing, and service of lien documents',
       'Coordination with payment bond claims when applicable',
     ],
-    price: 'By engagement with Lovein | Ribman, P.C.',
-    cta: 'Talk to a Construction Lawyer',
+    price: 'With Lovein Ribman, P.C. Firm',
+    cta: 'Talk with a Lawyer',
     href: '/contact',
     featured: false,
   },
@@ -57,7 +57,7 @@ export const SolutionCardsSection: React.FC = () => {
         Choose the Level of Help That Fits Your&nbsp;Project
       </h2>
       <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 leading-relaxed">
-        Start with a DIY lien kit, add attorney review, or retain a construction lawyer for complete&nbsp;representation.
+        Start with a DIY lien kit, add attorney review, or retain a lawyer for complete&nbsp;representation.
       </p>
     </div>
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
@@ -75,7 +75,9 @@ export const SolutionCardsSection: React.FC = () => {
             </Badge>
           )}
           <div>
-            <p className="text-xs uppercase text-slate-500 dark:text-slate-400 tracking-wide font-semibold">{card.featured ? 'Premium Support' : 'Self-Guided'}</p>
+            <p className="text-xs uppercase text-slate-500 dark:text-slate-400 tracking-wide font-semibold">
+              {card.featured ? 'Premium Support' : (index === 2 ? 'Attorney-Guided' : 'Self-Guided')}
+            </p>
             <h3 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-white mt-2 leading-tight">{card.name}</h3>
             <p className="text-slate-600 dark:text-slate-300 mt-2 text-sm md:text-base leading-relaxed">{card.subtitle}</p>
           </div>
