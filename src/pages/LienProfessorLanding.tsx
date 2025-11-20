@@ -4,36 +4,65 @@ import { HowItWorksSection } from '@/components/lienProfessor/HowItWorks';
 import { SolutionCardsSection } from '@/components/lienProfessor/Solutions';
 import { WhyLienProfessorSection } from '@/components/lienProfessor/WhyLienProfessor';
 import { ResourceLibrarySection } from '@/components/lienProfessor/ResourceLibrary';
+import { ResourceCategoriesSection } from '@/components/lienProfessor/ResourceCategories';
+import { Top5MistakesSection } from '@/components/lienProfessor/Top5Mistakes';
 import { FreeLienDocumentSection } from '@/components/lienProfessor/FreeLienDocument';
 import { TestimonialsSection } from '@/components/lienProfessor/Testimonials';
 import { FAQSection, FinalCTASection, SiteFooter } from '@/components/lienProfessor/FAQAndFooter';
-
-const sectionSpacing = 'py-16';
-
-const PortalPreviewSection: React.FC = () => (
-  <section className={sectionSpacing}>
-    <h2 className="text-2xl font-semibold text-slate-900 dark:text-white mb-6 text-center">Portal Preview</h2>
-    <div className="rounded-2xl border border-dashed border-slate-300 dark:border-slate-700 p-10 text-center text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-900">
-      Dashboard and document workflow preview placeholder.
-    </div>
-  </section>
-);
 
 const LienProfessorLanding: React.FC = () => {
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen">
       <HeroSection />
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12"> 
-        <HowItWorksSection />
-        <SolutionCardsSection />
-        <WhyLienProfessorSection />
-        <ResourceLibrarySection />
-        <FreeLienDocumentSection />
-        <PortalPreviewSection />
-        <TestimonialsSection />
-        <FAQSection />
-        <FinalCTASection />
+      <main className="space-y-0">
+        {/* How It Works */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <HowItWorksSection />
+        </div>
+
+        {/* Solution Cards */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <SolutionCardsSection />
+        </div>
+
+        {/* Top 5 Mistakes - Featured CTA Section */}
+        <Top5MistakesSection />
+
+        {/* Why Lien Professor */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <WhyLienProfessorSection />
+        </div>
+
+        {/* Resource Categories - Private & Government Projects */}
+        <ResourceCategoriesSection />
+
+        {/* Resource Library */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <ResourceLibrarySection />
+        </div>
+
+        {/* Free Lien Document */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <FreeLienDocumentSection />
+        </div>
+
+        {/* Testimonials */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <TestimonialsSection />
+        </div>
+
+        {/* FAQ */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <FAQSection />
+        </div>
+
+        {/* Final CTA */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <FinalCTASection />
+        </div>
       </main>
+      
+      {/* Footer */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SiteFooter />
       </div>
