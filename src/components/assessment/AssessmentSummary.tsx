@@ -209,10 +209,10 @@ export function AssessmentSummary({ result, onStartOver }: AssessmentSummaryProp
                                     <div className="flex-shrink-0 ml-4 text-right">
                                         <div
                                             className={`text-2xl font-bold ${deadline.daysFromNow < 15
-                                                    ? 'text-danger-600'
-                                                    : deadline.daysFromNow < 30
-                                                        ? 'text-warning-600'
-                                                        : 'text-slate-900'
+                                                ? 'text-danger-600'
+                                                : deadline.daysFromNow < 30
+                                                    ? 'text-warning-600'
+                                                    : 'text-slate-900'
                                                 }`}
                                         >
                                             {deadline.daysFromNow}

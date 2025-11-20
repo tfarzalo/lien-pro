@@ -3,13 +3,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { 
-    ArrowLeft, 
-    ArrowRight, 
-    CheckCircle, 
-    Shield, 
-    FileText, 
-    Clock, 
+import {
+    ArrowLeft,
+    ArrowRight,
+    CheckCircle,
+    Shield,
+    FileText,
+    Clock,
     Package,
     Download,
     Mail
@@ -48,7 +48,7 @@ export default function KitDetailsPage() {
 
         try {
             setLoading(true);
-            
+
             // Try lien kits first
             let { data, error } = await supabase
                 .from('lien_kits')
@@ -63,7 +63,7 @@ export default function KitDetailsPage() {
                     .select('*')
                     .eq('id', kitId)
                     .single();
-                
+
                 if (bondResult.data) {
                     data = bondResult.data;
                     setKitType('bond');
@@ -130,9 +130,9 @@ export default function KitDetailsPage() {
             {/* Back Navigation */}
             <div className="bg-white border-b">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <Button 
-                        variant="ghost" 
-                        size="sm" 
+                    <Button
+                        variant="ghost"
+                        size="sm"
                         onClick={() => navigate(kitType === 'bond' ? '/bond-kits' : '/kits')}
                         className="flex items-center gap-2 text-slate-600 hover:text-slate-900"
                     >
@@ -255,8 +255,8 @@ export default function KitDetailsPage() {
                                     <p className="text-slate-600">One-time payment</p>
                                 </div>
 
-                                <Button 
-                                    className="w-full" 
+                                <Button
+                                    className="w-full"
                                     size="lg"
                                     onClick={handlePurchase}
                                 >
@@ -324,8 +324,8 @@ export default function KitDetailsPage() {
 
                 {/* Back Button */}
                 <div className="mt-12">
-                    <Button 
-                        variant="ghost" 
+                    <Button
+                        variant="ghost"
                         onClick={() => navigate(kitType === 'bond' ? '/bond-kits' : '/kits')}
                     >
                         <ArrowLeft className="mr-2 h-4 w-4" />

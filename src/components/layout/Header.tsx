@@ -39,8 +39,8 @@ export function Header() {
             </div>
           ) : (
             <div className="flex items-center space-x-3">
-              <Link 
-                to="/login" 
+              <Link
+                to="/login"
                 className="hidden lg:flex flex-col text-right leading-tight hover:opacity-80 transition-opacity cursor-pointer"
               >
                 <span className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">

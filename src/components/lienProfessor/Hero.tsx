@@ -36,7 +36,7 @@ export const HeroSection: React.FC = () => {
             <div className="hidden">
               <NextDeadlineCounter />
             </div>
-            
+
             <div className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-100/80 px-4 py-1 text-sm font-medium text-brand-700 hover:scale-105 transition-transform">
               Trusted by 1,000+ contractors
             </div>
@@ -50,9 +50,9 @@ export const HeroSection: React.FC = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <AssessmentCTA 
-                variant="primary" 
-                size="lg" 
+              <AssessmentCTA
+                variant="primary"
+                size="lg"
                 className="group shadow-lg shadow-brand-200/60 hover:shadow-xl hover:scale-105 transition-all duration-200"
               />
               <Link

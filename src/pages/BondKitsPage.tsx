@@ -197,9 +197,9 @@ export default function BondKitsPage() {
                     <p className="text-xl text-blue-50 mb-8 max-w-2xl mx-auto">
                         Take our free assessment to get personalized recommendations based on your public project details.
                     </p>
-                    <AssessmentCTA 
-                        variant="secondary" 
-                        size="lg" 
+                    <AssessmentCTA
+                        variant="secondary"
+                        size="lg"
                         className="text-lg px-8 bg-white text-blue-700 hover:bg-slate-100"
                     />
                 </div>

@@ -23,7 +23,6 @@ export default function BrowseKitsPage() {
     const navigate = useNavigate();
     const [kits, setKits] = useState<LienKit[]>([]);
     const [loading, setLoading] = useState(true);
-    const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
     useEffect(() => {
         loadKits();
@@ -48,13 +47,7 @@ export default function BrowseKitsPage() {
         }
     };
 
-    const categories = ['all', ...Array.from(new Set(kits.map(kit => kit.category)))];
-    const filteredKits = selectedCategory === 'all'
-        ? kits
-        : kits.filter(kit => kit.category === selectedCategory);
-
     const handlePurchase = (kitId: string) => {
-        // Navigate to kit details page instead of forcing checkout
         navigate(`/kits/${kitId}`);
     };
 
@@ -76,39 +69,24 @@ export default function BrowseKitsPage() {
 
             {/* Main Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                {/* Category Filter */}
-                <div className="mb-8 flex flex-wrap gap-2">
-                    {categories.map(category => (
-                        <Button
-                            key={category}
-                            variant={selectedCategory === category ? 'primary' : 'secondary'}
-                            onClick={() => setSelectedCategory(category)}
-                            className="capitalize"
-                        >
-                            {category}
-                        </Button>
-                    ))}
-                </div>
-
                 {/* Kits Grid */}
                 {loading ? (
                     <div className="flex items-center justify-center py-12">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600"></div>
                     </div>
-                ) : filteredKits.length === 0 ? (
+                ) : kits.length === 0 ? (
                     <Card>
                         <CardContent className="py-12 text-center">
                             <FileText className="h-12 w-12 text-slate-400 mx-auto mb-4" />
                             <h3 className="text-lg font-semibold text-slate-900 mb-2">No Kits Found</h3>
                             <p className="text-slate-600 mb-4">
-                                We don't have any kits in this category yet.
+                                We don't have any lien kits available yet.
                             </p>
-                            <Button onClick={() => setSelectedCategory('all')}>View All Kits</Button>
                         </CardContent>
                     </Card>
                 ) : (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {filteredKits.map(kit => (
+                        {kits.map(kit => (
                             <Card key={kit.id} className="hover:shadow-lg transition-shadow">
                                 <CardHeader>
                                     <div className="flex items-start justify-between mb-2">
@@ -191,9 +169,9 @@ export default function BrowseKitsPage() {
                     <p className="text-xl text-brand-50 mb-8 max-w-2xl mx-auto">
                         Take our free assessment to get personalized recommendations based on your project details.
                     </p>
-                    <AssessmentCTA 
-                        variant="secondary" 
-                        size="lg" 
+                    <AssessmentCTA
+                        variant="secondary"
+                        size="lg"
                         className="text-lg px-8 bg-white text-brand-700 hover:bg-slate-100"
                     />
                 </div>

@@ -215,9 +215,9 @@ export const ResourceCategoriesSection: React.FC = () => {
                 {/* Bottom CTA */}
                 <div className="mt-12 text-center">
                     <div className="inline-flex flex-col sm:flex-row gap-4">
-                        <AssessmentCTA 
-                            variant="primary" 
-                            size="lg" 
+                        <AssessmentCTA
+                            variant="primary"
+                            size="lg"
                             className="shadow-lg"
                         />
                         <Link

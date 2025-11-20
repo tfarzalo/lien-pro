@@ -1041,9 +1041,8 @@ export function AssessmentPage() {
 
                     {/* Left rail */}
                     <aside
-                        className={`space-y-6 lg:col-span-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                            animateSections ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
-                        }`}
+                        className={`space-y-6 lg:col-span-3 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${animateSections ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+                            }`}
                         aria-hidden={showIntroOverlay}
                     >
                         <Link
@@ -1071,11 +1070,10 @@ export function AssessmentPage() {
                                     return (
                                         <div
                                             key={step.id}
-                                            className={`flex items-start gap-3 rounded-2xl border p-3 transition ${
-                                                status === 'current'
+                                            className={`flex items-start gap-3 rounded-2xl border p-3 transition ${status === 'current'
                                                     ? 'border-brand-300 bg-white dark:bg-slate-900 shadow-sm'
                                                     : 'border-transparent'
-                                            }`}
+                                                }`}
                                         >
                                             <span className="mt-1">
                                                 {status === 'complete' ? (
@@ -1101,9 +1099,8 @@ export function AssessmentPage() {
 
                     {/* Main assessment panel */}
                     <div
-                        className={`lg:col-span-9 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                            animateSections ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
-                        }`}
+                        className={`lg:col-span-9 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${animateSections ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-6'
+                            }`}
                         aria-hidden={showIntroOverlay}
                     >
                         <div className="max-w-5xl mx-auto w-full space-y-6">

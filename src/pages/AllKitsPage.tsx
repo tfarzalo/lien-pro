@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { ArrowRight, CheckCircle, FileText, Shield, Filter } from 'lucide-react';
+import { ArrowRight, CheckCircle, FileText, Shield } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 import { AssessmentCTA } from '@/components/common/AssessmentCTA';
 import { getKitPrice } from '@/lib/kitPricing';
@@ -44,7 +44,7 @@ export default function AllKitsPage() {
             const { data: bondKits, error: bondError } = await supabase
                 .from('bond_kits')
                 .select('*')
-                .order('is_popular', { ascending: false});
+                .order('is_popular', { ascending: false });
 
             const allKits: Kit[] = [];
 
@@ -56,8 +56,9 @@ export default function AllKitsPage() {
                 allKits.push(...bondKits.map(kit => ({ ...kit, kit_type: 'bond' as const })));
             }
 
-            // Add mock kits if no data
-            if (allKits.length === 0) {
+            // If database has no data or very little data, use mock kits
+            if (allKits.length < 5) {
+                console.log('Using mock kits - database has insufficient data');
                 allKits.push(...getMockKits());
             }
 
@@ -71,6 +72,7 @@ export default function AllKitsPage() {
     };
 
     const getMockKits = (): Kit[] => [
+        // Lien Kits
         {
             id: 'lien-kit-1',
             name: 'Texas Residential Lien Kit',
@@ -104,6 +106,55 @@ export default function AllKitsPage() {
             ]
         },
         {
+            id: 'lien-kit-3',
+            name: 'Texas Subcontractor Lien Kit',
+            description: 'Specialized forms and guidance for subcontractors filing mechanics liens',
+            price: 199,
+            jurisdiction: 'Texas',
+            category: 'subcontractor',
+            kit_type: 'lien',
+            is_popular: false,
+            features: [
+                'Subcontractor-specific Notices',
+                'Fund Trapping Notices',
+                'Retainage Claim Forms',
+                'Deadline Tracking Tools'
+            ]
+        },
+        {
+            id: 'lien-kit-4',
+            name: 'Texas Material Supplier Lien Kit',
+            description: 'Essential documents for material suppliers to protect payment rights',
+            price: 179,
+            jurisdiction: 'Texas',
+            category: 'supplier',
+            kit_type: 'lien',
+            is_popular: false,
+            features: [
+                'Preliminary Notice for Suppliers',
+                'Material Supplier Affidavit',
+                'Delivery Documentation',
+                'Credit Terms Protection'
+            ]
+        },
+        {
+            id: 'lien-kit-5',
+            name: 'Texas Home Improvement Lien Kit',
+            description: 'Specialized toolkit for home improvement contractors',
+            price: 159,
+            jurisdiction: 'Texas',
+            category: 'residential',
+            kit_type: 'lien',
+            is_popular: false,
+            features: [
+                'Home Improvement Contract Templates',
+                'Residential Notice Requirements',
+                'Homeowner Notice Forms',
+                'Payment Demand Letters'
+            ]
+        },
+        // Bond Kits
+        {
             id: 'bond-kit-1',
             name: 'Texas Payment Bond Claim Kit',
             description: 'Complete package for filing payment bond claims on Texas public projects',
@@ -134,6 +185,54 @@ export default function AllKitsPage() {
                 'Federal Timeline Tracking',
                 'Service Requirements Guide'
             ]
+        },
+        {
+            id: 'bond-kit-3',
+            name: 'Texas County/City Bond Claim Kit',
+            description: 'Forms for payment bond claims on local government projects',
+            price: 179,
+            jurisdiction: 'Texas',
+            category: 'local',
+            kit_type: 'bond',
+            is_popular: false,
+            features: [
+                'Local Government Bond Claims',
+                'County/City Project Forms',
+                'Second and Third Month Notices',
+                'Municipal Project Guidelines'
+            ]
+        },
+        {
+            id: 'bond-kit-4',
+            name: 'Texas School District Bond Claim Kit',
+            description: 'Specialized forms for bond claims on school construction projects',
+            price: 179,
+            jurisdiction: 'Texas',
+            category: 'state',
+            kit_type: 'bond',
+            is_popular: false,
+            features: [
+                'School District Bond Claims',
+                'Educational Facility Forms',
+                'ISD-specific Requirements',
+                'Public School Project Guide'
+            ]
+        },
+        {
+            id: 'bond-kit-5',
+            name: 'Little Miller Act State Bond Kit',
+            description: 'Bond claim forms for Texas state-level public projects',
+            price: 199,
+            jurisdiction: 'Texas',
+            category: 'state',
+            kit_type: 'bond',
+            is_popular: false,
+            features: [
+                'State Agency Bond Claims',
+                'TxDOT Project Forms',
+                'State Facility Documents',
+                'Texas Little Miller Act Guide'
+            ]
         }
     ];
 
@@ -151,68 +250,63 @@ export default function AllKitsPage() {
 
     return (
         <div className="min-h-screen bg-slate-50">
-            {/* Header */}
-            <div className="bg-white border-b">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                    <div className="text-center max-w-3xl mx-auto">
-                        <h1 className="text-4xl font-bold text-slate-900 mb-4">
-                            Texas Lien & Bond Kits
-                        </h1>
-                        <p className="text-xl text-slate-600">
-                            Attorney-drafted forms and step-by-step guidance for protecting your payment rights
-                        </p>
-                    </div>
+            {/* Hero Section */}
+            <div className="bg-gradient-to-br from-brand-50 to-white py-16">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                        Texas Lien & Bond Kits
+                    </h1>
+                    <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+                        Attorney-drafted forms and step-by-step guidance for protecting your payment rights
+                    </p>
                 </div>
             </div>
 
-            {/* Filters */}
-            <div className="bg-white border-b">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                    <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-                        <div className="flex items-center gap-2">
-                            <Filter className="h-5 w-5 text-slate-400" />
-                            <span className="text-sm font-medium text-slate-700">Filter by:</span>
-                        </div>
-                        <div className="flex flex-wrap gap-3">
-                            <Button
-                                variant={filterType === 'all' ? 'primary' : 'secondary'}
-                                size="sm"
-                                onClick={() => setFilterType('all')}
-                            >
-                                All Kits
-                            </Button>
-                            <Button
-                                variant={filterType === 'lien' ? 'primary' : 'secondary'}
-                                size="sm"
-                                onClick={() => setFilterType('lien')}
-                            >
-                                Lien Kits
-                            </Button>
-                            <Button
-                                variant={filterType === 'bond' ? 'primary' : 'secondary'}
-                                size="sm"
-                                onClick={() => setFilterType('bond')}
-                            >
-                                Bond Kits
-                            </Button>
-                        </div>
-                        <select
-                            value={filterCategory}
-                            onChange={(e) => setFilterCategory(e.target.value)}
-                            className="px-4 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-500 focus:border-transparent"
-                        >
-                            {categories.map(cat => (
-                                <option key={cat} value={cat}>
-                                    {cat === 'all' ? 'All Categories' : cat.charAt(0).toUpperCase() + cat.slice(1)}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            {/* Kits Grid */}
+            {/* Main Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                {/* Category Filters */}
+                <div className="mb-8 flex flex-wrap gap-2">
+                    <Button
+                        variant={filterType === 'all' ? 'primary' : 'secondary'}
+                        onClick={() => setFilterType('all')}
+                    >
+                        All
+                    </Button>
+                    <Button
+                        variant={filterType === 'lien' ? 'primary' : 'secondary'}
+                        onClick={() => setFilterType('lien')}
+                    >
+                        Lien Kits
+                    </Button>
+                    <Button
+                        variant={filterType === 'bond' ? 'primary' : 'secondary'}
+                        onClick={() => setFilterType('bond')}
+                    >
+                        Bond Kits
+                    </Button>
+                    <div className="w-px h-8 bg-slate-300 mx-2" />
+                    {categories.filter(c => c !== 'all').map(category => (
+                        <Button
+                            key={category}
+                            variant={filterCategory === category ? 'primary' : 'secondary'}
+                            onClick={() => setFilterCategory(category)}
+                            className="capitalize"
+                        >
+                            {category}
+                        </Button>
+                    ))}
+                    {filterCategory !== 'all' && (
+                        <Button
+                            variant="secondary"
+                            onClick={() => setFilterCategory('all')}
+                            className="text-slate-600"
+                        >
+                            Clear
+                        </Button>
+                    )}
+                </div>
+
+                {/* Kits Grid */}
                 {loading ? (
                     <div className="text-center py-12">
                         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-600 mx-auto"></div>
@@ -317,9 +411,9 @@ export default function AllKitsPage() {
                     <p className="text-xl text-brand-50 mb-8 max-w-2xl mx-auto">
                         Take our free assessment to get personalized recommendations based on your project details.
                     </p>
-                    <AssessmentCTA 
-                        variant="secondary" 
-                        size="lg" 
+                    <AssessmentCTA
+                        variant="secondary"
+                        size="lg"
                         className="text-lg px-8 bg-white text-brand-700 hover:bg-slate-100"
                     />
                 </div>

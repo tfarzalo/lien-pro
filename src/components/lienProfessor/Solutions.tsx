@@ -92,8 +92,8 @@ export const SolutionCardsSection: React.FC = () => {
               <a
                 href={card.href}
                 className={`w-full inline-flex justify-center items-center rounded-2xl px-5 py-3.5 font-semibold transition-all duration-300 ${card.featured
-                    ? 'bg-gradient-to-r from-brand-600 to-brand-700 text-white hover:from-brand-500 hover:to-brand-600 shadow-lg shadow-brand-500/30 hover:shadow-xl hover:scale-105'
-                    : 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 hover:scale-105'
+                  ? 'bg-gradient-to-r from-brand-600 to-brand-700 text-white hover:from-brand-500 hover:to-brand-600 shadow-lg shadow-brand-500/30 hover:shadow-xl hover:scale-105'
+                  : 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 hover:scale-105'
                   }`}
               >
                 {card.cta}

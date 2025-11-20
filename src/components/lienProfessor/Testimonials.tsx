@@ -65,13 +65,13 @@ export const TestimonialsSection: React.FC = () => (
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">Real Help for Real-World Payment Problems</h2>
       </div>
     </div>
-    
+
     {/* Full-width scrolling testimonials */}
     <div className="relative mt-10">
       {/* Gradient overlays for fade effect */}
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-50 to-transparent dark:from-slate-900 z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-50 to-transparent dark:from-slate-900 z-10 pointer-events-none" />
-      
+
       {/* Scrolling container */}
       <div className="flex gap-6 animate-scroll-left">
         {/* Duplicate testimonials for seamless loop */}

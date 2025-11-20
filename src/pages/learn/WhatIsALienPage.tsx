@@ -10,7 +10,7 @@ export function WhatIsALienPage() {
         <div className="min-h-screen">
             {/* Hero Section */}
             <section className="py-8 md:py-10">
-                <div className="max-w-5xl mx-auto">
+                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="rounded-3xl bg-gradient-to-br from-brand-600 to-brand-700 text-white p-10 shadow-2xl shadow-brand-900/30">
                         <div className="flex items-center gap-3 mb-6">
                             <BookOpen className="h-8 w-8" />
@@ -30,7 +30,7 @@ export function WhatIsALienPage() {
             </section>
 
             {/* Main Content */}
-            <div className="max-w-5xl mx-auto pb-12">
+            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
 
                 {/* Quick Answer Section */}
                 <Card className="mb-8 border-brand-200 bg-brand-50">

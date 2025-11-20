@@ -30,12 +30,17 @@ export const siteConfig = {
         },
         {
             title: "Lien Kits",
-            href: "/kits",
+            href: "/lien-kits",
             audience: "all",
         },
         {
             title: "Bond Kits",
             href: "/bond-kits",
+            audience: "all",
+        },
+        {
+            title: "Shop All Kits",
+            href: "/kits",
             audience: "all",
         },
         {

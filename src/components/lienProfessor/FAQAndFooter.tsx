@@ -57,9 +57,9 @@ export const FinalCTASection: React.FC = () => (
         Take the free assessment to discover what liens you can file on your project.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <AssessmentCTA 
-          variant="secondary" 
-          size="lg" 
+        <AssessmentCTA
+          variant="secondary"
+          size="lg"
           className="bg-white text-brand-700 hover:bg-slate-100 shadow"
         />
         <Link to="/contact" className="text-white/80 hover:text-white text-sm font-semibold underline underline-offset-4 whitespace-nowrap">
