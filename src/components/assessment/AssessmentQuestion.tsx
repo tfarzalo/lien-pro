@@ -17,6 +17,7 @@ interface AssessmentQuestionProps {
     onNext: () => void
     onBack: () => void
     canGoBack: boolean
+    isTransitioning?: boolean
     progress: {
         current: number
         total: number
@@ -30,6 +31,7 @@ export function AssessmentQuestion({
     onNext,
     onBack,
     canGoBack,
+    isTransitioning = false,
     progress,
 }: AssessmentQuestionProps) {
     const [localValue, setLocalValue] = useState<any>(value || '')
@@ -275,14 +277,18 @@ export function AssessmentQuestion({
                         <Button
                             variant="secondary"
                             onClick={onBack}
-                            disabled={!canGoBack}
+                            disabled={!canGoBack || isTransitioning}
                             className="flex items-center"
                         >
                             <ArrowLeft className="mr-2 h-4 w-4" />
                             Back
                         </Button>
 
-                        <Button onClick={handleNext} className="flex items-center">
+                        <Button
+                            onClick={handleNext}
+                            className="flex items-center"
+                            disabled={isTransitioning}
+                        >
                             Next
                             <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>

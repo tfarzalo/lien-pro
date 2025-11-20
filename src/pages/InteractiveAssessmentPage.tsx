@@ -3,19 +3,18 @@
 // Main orchestrator for the assessment flow
 // =====================================================
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAssessmentStore } from '@/stores/assessmentStore'
 import { AssessmentIntro } from '@/components/assessment/AssessmentIntro'
 import { AssessmentQuestion } from '@/components/assessment/AssessmentQuestion'
 import { AssessmentSummary } from '@/components/assessment/AssessmentSummary'
 import { AppShell } from '@/components/layout/AppShell'
-import { Card, CardContent } from '@/components/ui/Card'
 import { useAuth } from '@/hooks/useAuth'
 import { useCreateAssessment, useSaveAssessmentAnswer, useCalculateAssessmentResult } from '@/hooks/useAssessments'
 import { useLienKits } from '@/hooks/useLienKits'
 import { texasLienAssessmentFlow, shouldShowQuestion } from '@/lib/assessmentQuestions'
 import { generateKitRecommendation } from '@/lib/kitRecommendationEngine'
-import type { AssessmentQuestion as QuestionType } from '@/types/assessment'
+import type { AssessmentQuestion as QuestionType, AssessmentResult } from '@/types/assessment'
 
 export function InteractiveAssessmentPage() {
     const { user } = useAuth()
@@ -42,8 +41,12 @@ export function InteractiveAssessmentPage() {
     const saveAssessmentAnswer = useSaveAssessmentAnswer()
     const calculateResult = useCalculateAssessmentResult()
 
-    // Local state for visible questions
+    // Local state for visible questions and animation
     const [visibleQuestions, setVisibleQuestions] = useState<QuestionType[]>([])
+    const [animationClass, setAnimationClass] = useState('')
+    const [isAnimating, setIsAnimating] = useState(false)
+    const animationTimerRef = useRef<number | null>(null)
+    const animationDuration = 350
 
     // Filter questions based on previous answers
     useEffect(() => {
@@ -93,46 +96,84 @@ export function InteractiveAssessmentPage() {
         }
     }
 
+    const runSlideAnimation = (
+        direction: 'forward' | 'backward',
+        navigate: () => boolean
+    ) => {
+        if (isAnimating) return
+
+        const exitClass = direction === 'forward' ? 'slide-out-to-left' : 'slide-out-to-right'
+        const enterClass = direction === 'forward' ? 'slide-in-from-right' : 'slide-in-from-left'
+
+        if (animationTimerRef.current) {
+            clearTimeout(animationTimerRef.current)
+        }
+
+        setIsAnimating(true)
+        setAnimationClass(exitClass)
+
+        animationTimerRef.current = window.setTimeout(() => {
+            const shouldAnimateIn = navigate()
+
+            if (shouldAnimateIn) {
+                setAnimationClass(enterClass)
+                animationTimerRef.current = window.setTimeout(() => {
+                    setAnimationClass('')
+                    setIsAnimating(false)
+                }, animationDuration)
+            } else {
+                setAnimationClass('')
+                setIsAnimating(false)
+            }
+        }, animationDuration)
+    }
+
     // Next question
     const handleNext = () => {
         const currentQuestion = visibleQuestions[currentQuestionIndex]
         if (!currentQuestion) return
 
-        // Check if we're at the end
-        if (currentQuestionIndex >= visibleQuestions.length - 1) {
-            handleComplete()
-        } else {
-            setCurrentQuestionIndex(currentQuestionIndex + 1)
-        }
+        runSlideAnimation('forward', () => {
+            if (currentQuestionIndex < visibleQuestions.length - 1) {
+                setCurrentQuestionIndex(currentQuestionIndex + 1)
+                return true
+            }
+
+            void handleShowSummary()
+            return false
+        })
     }
 
     // Previous question
     const handleBack = () => {
         if (currentQuestionIndex > 0) {
-            setCurrentQuestionIndex(currentQuestionIndex - 1)
+            runSlideAnimation('backward', () => {
+                setCurrentQuestionIndex(currentQuestionIndex - 1)
+                return true
+            })
         }
     }
 
-    // Complete assessment
-    const handleComplete = async () => {
-        setCurrentStep('processing')
+    // Show summary
+    const handleShowSummary = async () => {
+        if (!assessmentId || !availableKits) return
 
         try {
-            // Generate recommendation
-            const recommendation = generateKitRecommendation(
-                answers,
-                availableKits || []
-            )
+            const answersForCalc = useAssessmentStore.getState().answers;
+            const calculatedResult = await calculateResult.mutateAsync(assessmentId);
 
-            // Save result to database
-            if (assessmentId) {
-                await calculateResult.mutateAsync(assessmentId)
-            }
+            // The recommendation engine returns the full AssessmentResult object
+            const recommendationResult = generateKitRecommendation(answersForCalc, availableKits);
 
-            // Update local state
-            setResult(recommendation)
+            const fullResult: AssessmentResult = {
+                ...calculatedResult, // Contains assessment metadata
+                ...recommendationResult, // Contains score, kits, deadlines, etc.
+            };
+
+            setResult(fullResult);
+            setCurrentStep('results');
         } catch (error) {
-            console.error('Failed to complete assessment:', error)
+            console.error('Failed to calculate assessment result:', error);
         }
     }
 
@@ -143,70 +184,42 @@ export function InteractiveAssessmentPage() {
         setCurrentQuestionIndex(0)
     }
 
-    // Render based on current step
-    const renderStep = () => {
-        switch (currentStep) {
-            case 'intro':
-                return <AssessmentIntro onStart={handleStart} />
-
-            case 'questions':
-                const currentQuestion = visibleQuestions[currentQuestionIndex]
-
-                if (!currentQuestion) {
-                    return (
-                        <div className="max-w-2xl mx-auto py-12 text-center">
-                            <p className="text-slate-600">No questions available</p>
-                        </div>
-                    )
-                }
-
-                return (
-                    <AssessmentQuestion
-                        question={currentQuestion}
-                        value={answers[currentQuestion.key]}
-                        onAnswer={handleAnswer}
-                        onNext={handleNext}
-                        onBack={handleBack}
-                        canGoBack={currentQuestionIndex > 0}
-                        progress={{
-                            current: currentQuestionIndex + 1,
-                            total: visibleQuestions.length,
-                        }}
-                    />
-                )
-
-            case 'processing':
-                return (
-                    <div className="max-w-2xl mx-auto py-24">
-                        <Card>
-                            <CardContent className="p-12 text-center">
-                                <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-brand-600 mx-auto mb-6"></div>
-                                <h2 className="text-2xl font-bold text-slate-900 mb-2">
-                                    Analyzing Your Answers
-                                </h2>
-                                <p className="text-slate-600">
-                                    We're reviewing Texas lien law to provide personalized recommendations...
-                                </p>
-                            </CardContent>
-                        </Card>
-                    </div>
-                )
-
-            case 'results':
-                if (!result) {
-                    return (
-                        <div className="max-w-2xl mx-auto py-12 text-center">
-                            <p className="text-slate-600">No results available</p>
-                        </div>
-                    )
-                }
-
-                return <AssessmentSummary result={result} onStartOver={handleStartOver} />
-
-            default:
-                return null
+    useEffect(() => {
+        return () => {
+            if (animationTimerRef.current) {
+                clearTimeout(animationTimerRef.current)
+            }
         }
-    }
+    }, [])
 
-    return <AppShell>{renderStep()}</AppShell>
+    return (
+        <AppShell>
+            <div className="container mx-auto py-8 overflow-x-hidden">
+                {currentStep === 'intro' && <AssessmentIntro onStart={handleStart} />}
+
+                {currentStep === 'questions' && visibleQuestions.length > 0 && (
+                    <div className={`transition-transform duration-300 ${animationClass}`}>
+                        <AssessmentQuestion
+                            key={visibleQuestions[currentQuestionIndex].id}
+                            question={visibleQuestions[currentQuestionIndex]}
+                            value={answers[visibleQuestions[currentQuestionIndex].key]}
+                            onAnswer={handleAnswer}
+                            onNext={handleNext}
+                            onBack={handleBack}
+                            canGoBack={currentQuestionIndex > 0}
+                            isTransitioning={isAnimating}
+                            progress={{
+                                current: currentQuestionIndex + 1,
+                                total: visibleQuestions.length,
+                            }}
+                        />
+                    </div>
+                )}
+
+                {currentStep === 'results' && result && (
+                    <AssessmentSummary result={result} onStartOver={handleStartOver} />
+                )}
+            </div>
+        </AppShell>
+    )
 }

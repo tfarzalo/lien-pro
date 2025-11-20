@@ -91,7 +91,7 @@ export function CheckoutPage() {
     // Handle checkout
     const handleCheckout = async () => {
         if (!user) {
-            navigate('/auth?redirect=/checkout')
+            navigate('/login')
             return
         }
 
@@ -133,7 +133,7 @@ export function CheckoutPage() {
                             Please sign in to complete your purchase.
                         </AlertDescription>
                     </Alert>
-                    <Button className="mt-4" onClick={() => navigate('/auth?redirect=/checkout')}>
+                    <Button className="mt-4" onClick={() => navigate('/login')}>
                         Sign In
                     </Button>
                 </div>

@@ -111,6 +111,49 @@ function HeroSection() {
     )
 }
 
+const keyPages = [
+    {
+        title: "Explore Site Map",
+        description: "View every public, customer, and admin page from one place.",
+        href: "/",
+    },
+    {
+        title: "Lien Professor Landing",
+        description: "See the modern SaaS experience for lien compliance.",
+        href: "/lien-professor",
+    },
+    {
+        title: "Learning Center",
+        description: "Read Texas-specific lien law education and resources.",
+        href: "/learn",
+    },
+]
+
+function QuickLinksSection() {
+    return (
+        <section className="bg-white py-12">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid gap-6 md:grid-cols-3">
+                    {keyPages.map((page) => (
+                        <Link
+                            key={page.title}
+                            to={page.href}
+                            className="rounded-2xl border border-slate-200 p-6 bg-slate-50 hover:bg-white hover:shadow-lg transition flex flex-col"
+                        >
+                            <p className="text-sm uppercase font-semibold text-brand-600 mb-2">{page.title}</p>
+                            <p className="text-slate-600 flex-1">{page.description}</p>
+                            <span className="mt-4 inline-flex items-center text-sm font-semibold text-brand-700">
+                                Visit
+                                <ArrowRight className="h-4 w-4 ml-2" />
+                            </span>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        </section>
+    )
+}
+
 function HowItWorksSection() {
     const steps = [
         {
@@ -254,31 +297,10 @@ function CTASection() {
 }
 
 export function LandingPage() {
-    const navigate = useNavigate();
-
     return (
         <div className="min-h-screen">
-            {/* Navigation */}
-            <nav className="sticky top-0 z-50 bg-white border-b border-slate-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex justify-between items-center h-16">
-                        <Link to="/" className="flex items-center">
-                            <Scale className="h-8 w-8 text-brand-600 mr-2" />
-                            <span className="text-xl font-bold text-slate-900">Lien Professor</span>
-                        </Link>
-                        <div className="hidden md:flex items-center space-x-8">
-                            <Link to="/assessment" className="text-slate-600 hover:text-slate-900">Assessment</Link>
-                            <Link to="/kits" className="text-slate-600 hover:text-slate-900">Lien Kits</Link>
-                            <a href="#about" className="text-slate-600 hover:text-slate-900">About</a>
-                            <Button variant="secondary" onClick={() => navigate('/login')}>Sign In</Button>
-                            <Button onClick={() => navigate('/assessment')}>Get Started</Button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-
-            {/* Page Sections */}
             <HeroSection />
+            <QuickLinksSection />
             <HowItWorksSection />
             <PopularKitsSection />
             <TestimonialsSection />

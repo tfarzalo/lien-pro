@@ -70,8 +70,8 @@ export function FormRunner({
             template.sections.forEach((section) => {
                 section.fields.forEach((field) => {
                     if (field.autofill) {
-                        const value = autofillField(field.autofill, commonFields)
-                        if (value !== undefined) {
+                        const value = autofillField(field, commonFields)
+                        if (value !== null && value !== undefined) {
                             autofilledValues[field.id] = value
                         }
                     } else if (field.defaultValue !== undefined) {
@@ -129,10 +129,18 @@ export function FormRunner({
     // Validate current section
     const validateCurrentSection = (): boolean => {
         const section = template.sections[currentSection]
-        const result = validateForm(section.fields, formValues)
+        const errors = validateForm(template, formValues)
+        
+        // Filter errors for current section only
+        const sectionErrors: Record<string, string> = {}
+        section.fields.forEach(field => {
+            if (errors[field.id]) {
+                sectionErrors[field.id] = errors[field.id]
+            }
+        })
 
-        setValidationErrors(result.errors)
-        return result.isValid
+        setValidationErrors(sectionErrors)
+        return Object.keys(sectionErrors).length === 0
     }
 
     // Go to next section
@@ -156,17 +164,16 @@ export function FormRunner({
     // Complete form
     const handleComplete = () => {
         // Validate all sections
-        const allFields = template.sections.flatMap((s) => s.fields)
-        const result = validateForm(allFields, formValues)
+        const errors = validateForm(template, formValues)
 
-        if (result.isValid) {
+        if (Object.keys(errors).length === 0) {
             onComplete?.()
         } else {
-            setValidationErrors(result.errors)
+            setValidationErrors(errors)
             // Find first section with error
             for (let i = 0; i < template.sections.length; i++) {
                 const sectionFields = template.sections[i].fields
-                const hasError = sectionFields.some((field) => result.errors[field.id])
+                const hasError = sectionFields.some((field) => errors[field.id])
                 if (hasError) {
                     setCurrentSection(i)
                     break
@@ -180,11 +187,10 @@ export function FormRunner({
         if (!onGeneratePDF) return
 
         // Validate all fields first
-        const allFields = template.sections.flatMap((s) => s.fields)
-        const result = validateForm(allFields, formValues)
+        const errors = validateForm(template, formValues)
 
-        if (!result.isValid) {
-            setValidationErrors(result.errors)
+        if (Object.keys(errors).length > 0) {
+            setValidationErrors(errors)
             alert('Please complete all required fields before generating PDF')
             return
         }

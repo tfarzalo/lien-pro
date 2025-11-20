@@ -38,7 +38,7 @@ export default function FormCompletionPage() {
                     data: { user },
                 } = await supabase.auth.getUser();
                 if (!user) {
-                    navigate('/auth');
+                    navigate('/login');
                     return;
                 }
                 setUserId(user.id);

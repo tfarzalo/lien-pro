@@ -24,34 +24,41 @@ import { WhatIsALienPage } from './pages/learn/WhatIsALienPage';
 import { WhoCanFilePage } from './pages/learn/WhoCanFilePage';
 import { PreliminaryNoticePage } from './pages/learn/PreliminaryNoticePage';
 import { ResidentialVsCommercialPage } from './pages/learn/ResidentialVsCommercialPage';
+import { SiteLayout } from './components/layout/SiteLayout';
+import LienProfessorLanding from './pages/LienProfessorLanding';
+import SiteMapPage from './pages/SiteMapPage';
 
 function App() {
   return (
     <ErrorBoundary>
       <Router>
         <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<AuthPage />} />
-          <Route path="/assessment" element={<AssessmentPage />} />
-          <Route path="/kits" element={<BrowseKitsPage />} />
+          <Route element={<SiteLayout />}>
+            {/* Public Routes */}
+            <Route path="/" element={<SiteMapPage />} />
+            <Route path="/landing" element={<LandingPage />} />
+            <Route path="/lien-professor" element={<LienProfessorLanding />} />
+            <Route path="/login" element={<AuthPage />} />
+            <Route path="/assessment" element={<AssessmentPage />} />
+            <Route path="/kits" element={<BrowseKitsPage />} />
 
-          {/* Learn/Education Routes */}
-          <Route path="/learn" element={<LearnLayout />}>
-            <Route index element={<LearnIndexPage />} />
-            <Route path="what-is-a-lien" element={<WhatIsALienPage />} />
-            <Route path="who-can-file" element={<WhoCanFilePage />} />
-            <Route path="preliminary-notice" element={<PreliminaryNoticePage />} />
-            <Route path="residential-vs-commercial" element={<ResidentialVsCommercialPage />} />
-          </Route>
+            {/* Learn/Education Routes */}
+            <Route path="/learn" element={<LearnLayout />}>
+              <Route index element={<LearnIndexPage />} />
+              <Route path="what-is-a-lien" element={<WhatIsALienPage />} />
+              <Route path="who-can-file" element={<WhoCanFilePage />} />
+              <Route path="preliminary-notice" element={<PreliminaryNoticePage />} />
+              <Route path="residential-vs-commercial" element={<ResidentialVsCommercialPage />} />
+            </Route>
 
-          {/* Protected Routes */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<EnhancedDashboardPage />} />
-            <Route path="/dashboard-old" element={<DashboardPage />} />
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/checkout/success" element={<OrderSuccessPage />} />
-            <Route path="/projects/:projectId/forms/:formId" element={<FormCompletionPage />} />
+            {/* Protected Routes */}
+            <Route element={<ProtectedRoute />}>
+              <Route path="/dashboard" element={<EnhancedDashboardPage />} />
+              <Route path="/dashboard-old" element={<DashboardPage />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/checkout/success" element={<OrderSuccessPage />} />
+              <Route path="/projects/:projectId/forms/:formId" element={<FormCompletionPage />} />
+            </Route>
           </Route>
 
           {/* Admin Routes */}

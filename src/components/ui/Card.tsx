@@ -45,7 +45,7 @@ const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
     ({ className, ...props }, ref) => (
         <div
             ref={ref}
-            className={cn("border-b border-slate-200 pb-4 mb-4", className)}
+            className={cn("pb-4 mb-4", className)}
             {...props}
         />
     )

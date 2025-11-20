@@ -40,9 +40,37 @@ export interface ButtonProps
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ({ className, variant, size, asChild = false, loading, children, ...props }, ref) => {
-        const Comp = asChild ? Slot : 'button';
+        if (asChild) {
+            const childArray = React.Children.toArray(children).filter((child) => {
+                if (typeof child === 'string') {
+                    return child.trim().length > 0;
+                }
+                return child !== null && child !== undefined && typeof child !== 'boolean';
+            });
+
+            const child = childArray[0];
+
+            if (!child || childArray.length > 1 || !React.isValidElement(child)) {
+                if (import.meta.env?.DEV) {
+                    console.error('Button with `asChild` expects a single valid React element child.');
+                }
+                return null;
+            }
+
+            return (
+                <Slot
+                    className={cn(buttonVariants({ variant, size, className }))}
+                    ref={ref}
+                    aria-busy={loading}
+                    {...props}
+                >
+                    {child}
+                </Slot>
+            );
+        }
+
         return (
-            <Comp
+            <button
                 className={cn(buttonVariants({ variant, size, className }))}
                 ref={ref}
                 disabled={loading || props.disabled}
@@ -50,7 +78,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             >
                 {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
                 {children}
-            </Comp>
+            </button>
         );
     }
 );

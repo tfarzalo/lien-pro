@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { ArrowRight, CheckCircle, DollarSign, FileText, Shield, Scale } from 'lucide-react';
+import { ArrowRight, CheckCircle, DollarSign, FileText, Shield } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 import { useAuth } from '@/contexts/AuthContext';
 
@@ -65,36 +65,6 @@ export default function BrowseKitsPage() {
 
     return (
         <div className="min-h-screen bg-slate-50">
-            {/* Header */}
-            <header className="bg-white shadow-sm">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                    <div className="flex items-center justify-between">
-                        <Link to="/" className="flex items-center">
-                            <Scale className="h-8 w-8 text-brand-600" />
-                            <span className="ml-2 text-xl font-bold text-slate-900">Lien Professor</span>
-                        </Link>
-                        <div className="flex items-center space-x-4">
-                            <Link to="/assessment">
-                                <Button variant="ghost">Take Assessment</Button>
-                            </Link>
-                            {user ? (
-                                <Link to="/dashboard">
-                                    <Button>My Dashboard</Button>
-                                </Link>
-                            ) : (
-                                <>
-                                    <Link to="/login">
-                                        <Button variant="ghost">Sign In</Button>
-                                    </Link>
-                                    <Link to="/login?mode=signup">
-                                        <Button>Get Started</Button>
-                                    </Link>
-                                </>
-                            )}
-                        </div>
-                    </div>
-                </div>
-            </header>
 
             {/* Hero Section */}
             <div className="bg-gradient-to-br from-brand-50 to-white py-16">
