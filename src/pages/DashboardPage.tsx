@@ -87,7 +87,7 @@ function DashboardHeader() {
     return (
         <div className="flex items-center justify-between px-6 py-4">
             <div className="flex items-center space-x-4">
-                <h1 className="text-xl font-semibold text-slate-900">Lien Professor</h1>
+                <img src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-full-logo.png" alt="Lien Professor" className="h-10 w-auto" />
             </div>
             <div className="flex items-center space-x-4">
                 <Button variant="ghost" size="sm">

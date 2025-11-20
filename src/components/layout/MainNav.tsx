@@ -1,7 +1,7 @@
 // src/components/layout/MainNav.tsx
 import { Link } from "react-router-dom";
 import { Icons } from "@/components/ui/Icons";
-import { siteConfig, type HeaderNavItem } from "@/config/site";
+import { type HeaderNavItem } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 interface MainNavProps {
@@ -21,8 +21,10 @@ export function MainNav({ items = [], activePath }: MainNavProps) {
     return (
         <div className="flex items-center gap-6 md:gap-10">
             <Link to="/" className="flex items-center space-x-2">
-                <Icons.logo className="h-6 w-6" />
-                <span className="inline-block font-bold">{siteConfig.name}</span>
+                {/* Desktop: Full logo with text */}
+                <Icons.logoFull className="hidden md:block h-12 w-auto" />
+                {/* Mobile: Icon only */}
+                <Icons.logo className="block md:hidden h-10 w-10" />
             </Link>
 
             {items.length > 0 && (

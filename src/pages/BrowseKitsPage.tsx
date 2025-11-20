@@ -208,6 +208,9 @@ export default function BrowseKitsPage() {
             {/* Footer */}
             <footer className="bg-slate-900 text-slate-300 py-8 mt-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                    <div className="flex justify-center mb-4">
+                        <img src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-icon.png" alt="Lien Professor" className="h-12 w-12" />
+                    </div>
                     <p>&copy; 2025 Lien Professor. All rights reserved.</p>
                 </div>
             </footer>

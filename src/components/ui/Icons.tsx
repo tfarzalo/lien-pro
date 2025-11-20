@@ -4,20 +4,18 @@ import { LucideProps, Moon, Sun } from "lucide-react";
 export const Icons = {
     sun: (props: LucideProps) => <Sun {...props} />,
     moon: (props: LucideProps) => <Moon {...props} />,
-    logo: (props: LucideProps) => (
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+    logo: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+        <img
+            src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-icon.png"
+            alt="Lien Professor"
             {...props}
-        >
-            <path d="M12 2L2 7l10 5 10-5-10-5z" />
-            <path d="M2 17l10 5 10-5" />
-            <path d="M2 12l10 5 10-5" />
-        </svg>
+        />
+    ),
+    logoFull: (props: React.ImgHTMLAttributes<HTMLImageElement>) => (
+        <img
+            src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-full-logo.png"
+            alt="Lien Professor"
+            {...props}
+        />
     ),
 };

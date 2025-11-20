@@ -72,9 +72,12 @@ export const FinalCTASection: React.FC = () => (
 export const SiteFooter: React.FC = () => (
   <footer className="bg-slate-950 text-slate-200 py-10">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-      <div>
-        <p className="text-lg font-semibold">Lien Professor</p>
-        <p className="text-sm text-slate-400">© {new Date().getFullYear()} Lovein | Ribman P.C. All rights reserved.</p>
+      <div className="flex items-center gap-3">
+        <img src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-icon.png" alt="Lien Professor" className="h-12 w-12" />
+        <div>
+          <p className="text-lg font-semibold">Lien Professor</p>
+          <p className="text-sm text-slate-400">© {new Date().getFullYear()} Lovein | Ribman P.C. All rights reserved.</p>
+        </div>
       </div>
       <div className="flex gap-6 text-sm">
         <Link to="/terms" className="text-slate-300 hover:text-white">Terms</Link>

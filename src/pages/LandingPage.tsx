@@ -310,8 +310,8 @@ export function LandingPage() {
             <footer className="bg-slate-900 py-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center">
-                        <div className="flex items-center">
-                            <Scale className="h-6 w-6 text-brand-400 mr-2" />
+                        <div className="flex items-center gap-3">
+                            <img src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-icon.png" alt="Lien Professor" className="h-10 w-10" />
                             <span className="text-lg font-semibold text-white">Lien Professor</span>
                         </div>
                         <p className="text-slate-400">

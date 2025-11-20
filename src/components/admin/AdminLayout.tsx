@@ -26,8 +26,9 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                     <div className="flex justify-between h-16">
                         <div className="flex">
                             <div className="flex-shrink-0 flex items-center">
-                                <Link to="/admin" className="text-xl font-bold text-gray-900">
-                                    Lien Professor Admin
+                                <Link to="/admin" className="flex items-center space-x-2">
+                                    <img src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-icon.png" alt="Lien Professor" className="h-10 w-10" />
+                                    <span className="text-xl font-bold text-gray-900">Admin</span>
                                 </Link>
                             </div>
                             <div className="hidden sm:ml-8 sm:flex sm:space-x-8">
