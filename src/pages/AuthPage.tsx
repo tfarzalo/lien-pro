@@ -52,7 +52,7 @@ const AuthPage = () => {
             <div className="mb-8">
                 <img src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-full-logo.png" alt="Lien Professor" className="h-16 w-auto" />
             </div>
-            
+
             <Card className="w-full max-w-md">
                 <CardHeader>
                     <CardTitle>Welcome to Lien Professor</CardTitle>

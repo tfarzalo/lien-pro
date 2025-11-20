@@ -130,7 +130,7 @@ export function FormRunner({
     const validateCurrentSection = (): boolean => {
         const section = template.sections[currentSection]
         const errors = validateForm(template, formValues)
-        
+
         // Filter errors for current section only
         const sectionErrors: Record<string, string> = {}
         section.fields.forEach(field => {

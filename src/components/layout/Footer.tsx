@@ -6,7 +6,7 @@ export function Footer() {
         <div className="mb-8 flex justify-center md:justify-start">
           <img src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-full-logo.png" alt="Lien Professor" className="h-14 w-auto" />
         </div>
-        
+
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           <div>
             <h3 className="font-semibold">Product</h3>
