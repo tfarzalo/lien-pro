@@ -4,6 +4,7 @@ import { KitCard } from "@/components/ui/SpecializedCards"
 import { Badge } from "@/components/ui/Badge"
 import { ArrowRight, CheckCircle, Clock, FileText, Scale, Shield, Star } from "lucide-react"
 import { Link, useNavigate } from "react-router-dom"
+import { AssessmentCTA } from "@/components/common/AssessmentCTA"
 
 // Mock data for popular kits
 const popularKits = [
@@ -82,10 +83,7 @@ function HeroSection() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button size="lg" className="text-lg px-8 py-4" onClick={() => navigate('/assessment')}>
-                            Start Free Assessment
-                            <ArrowRight className="ml-2 h-5 w-5" />
-                        </Button>
+                        <AssessmentCTA size="lg" className="text-lg px-8 py-4" />
                         <Button variant="secondary" size="lg" className="text-lg px-8 py-4" onClick={() => navigate('/kits')}>
                             Browse Lien Kits
                         </Button>
@@ -276,8 +274,6 @@ function TestimonialsSection() {
 }
 
 function CTASection() {
-    const navigate = useNavigate();
-
     return (
         <div className="bg-brand-600 py-16">
             <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
@@ -287,10 +283,7 @@ function CTASection() {
                 <p className="text-xl text-brand-100 mb-8">
                     Take our free assessment and discover what liens you can file on your Texas construction project.
                 </p>
-                <Button variant="secondary" size="lg" className="text-lg px-8 py-4" onClick={() => navigate('/assessment')}>
-                    Start Free Assessment
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
+                <AssessmentCTA variant="secondary" size="lg" className="text-lg px-8 py-4" />
             </div>
         </div>
     )

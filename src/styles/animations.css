@@ -67,3 +67,23 @@
         animation-duration: 0.01ms;
     }
 }
+
+/* Smooth auto-scrolling testimonials */
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-scroll-left {
+    animation: scroll-left 25s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-scroll-left {
+        animation: none;
+    }
+}

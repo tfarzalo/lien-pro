@@ -3,12 +3,14 @@
 // Shows results, recommended kits, and next steps
 // =====================================================
 
+import { useEffect } from 'react'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/Alert'
 import { KitCard } from '@/components/ui/SpecializedCards'
 import type { AssessmentResult } from '@/types/assessment'
+import { setAssessmentCookie, clearAssessmentCookie } from '@/lib/assessmentCookie'
 import {
     CheckCircle,
     AlertCircle,
@@ -18,6 +20,7 @@ import {
     ArrowRight,
     Download,
     Calendar,
+    RotateCcw,
 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
@@ -28,6 +31,16 @@ interface AssessmentSummaryProps {
 
 export function AssessmentSummary({ result, onStartOver }: AssessmentSummaryProps) {
     const navigate = useNavigate()
+
+    // Set cookie when results are displayed
+    useEffect(() => {
+        setAssessmentCookie({
+            completed: true,
+            completedAt: new Date().toISOString(),
+            score: result.score,
+            recommendedKitId: result.recommendedKits[0]?.kit.id,
+        })
+    }, [result])
 
     const urgencyConfig = {
         low: {
@@ -68,13 +81,19 @@ export function AssessmentSummary({ result, onStartOver }: AssessmentSummaryProp
     const UrgencyIcon = config.icon
 
     const handlePurchaseKit = (kitId: string) => {
-        // Navigate to checkout with preselected kit
-        navigate(`/checkout?kit=${kitId}`)
+        // Navigate to kit details page to show more information before purchase
+        navigate(`/kits/${kitId}`)
     }
 
     const handlePurchaseAll = () => {
         const kitIds = result.recommendedKits.map(rk => rk.kit.id).join(',')
+        // For multiple kits, go directly to checkout
         navigate(`/checkout?kits=${kitIds}`)
+    }
+
+    const handleRetakeAssessment = () => {
+        clearAssessmentCookie()
+        onStartOver()
     }
 
     return (
@@ -323,8 +342,9 @@ export function AssessmentSummary({ result, onStartOver }: AssessmentSummaryProp
 
             {/* Actions */}
             <div className="flex items-center justify-between pt-6 border-t border-slate-200">
-                <Button variant="secondary" onClick={onStartOver}>
-                    Start New Assessment
+                <Button variant="secondary" onClick={handleRetakeAssessment} className="flex items-center">
+                    <RotateCcw className="mr-2 h-4 w-4" />
+                    Retake Assessment
                 </Button>
 
                 <div className="flex items-center space-x-3">

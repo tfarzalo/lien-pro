@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const FreeLienDocumentSection: React.FC = () => (
-  <section className="py-16 bg-gradient-to-br from-brand-50 via-white to-brand-100/50">
+  <section className="py-16">
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 rounded-3xl bg-white shadow-xl shadow-brand-200/40 border border-brand-100 p-8 md:p-12">
       <div className="flex flex-col lg:flex-row lg:items-center gap-8">
         <div className="lg:w-1/2 space-y-4">

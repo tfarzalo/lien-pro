@@ -1,3 +1,5 @@
+import { ThemeToggle } from '@/components/theme/ThemeToggle'
+
 export function Footer() {
   return (
     <footer className="border-t bg-muted/40">
@@ -44,8 +46,14 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        <div className="mt-8 border-t pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Lien Professor by Lovein Ribman P.C. All rights reserved.</p>
+        <div className="mt-8 border-t pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-muted-foreground text-center sm:text-left">
+            &copy; 2024 Lien Professor by Lovein Ribman P.C. All rights reserved.
+          </p>
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-muted-foreground mr-2">Theme:</span>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </footer>

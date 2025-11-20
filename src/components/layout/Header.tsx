@@ -5,7 +5,7 @@ import { UserNav } from './UserNav'
 import { Button } from '@/components/ui/Button'
 import { useAuth } from '@/hooks/useAuth'
 import { siteConfig } from '@/config/site'
-import { ThemeToggle } from '@/components/theme/ThemeToggle'
+import { AssessmentCTA } from '@/components/common/AssessmentCTA'
 
 export function Header() {
   const { user, loading } = useAuth()
@@ -28,7 +28,6 @@ export function Header() {
       <div className="container flex h-16 max-w-screen-2xl items-center">
         <MainNav items={navItems} activePath={location.pathname} />
         <div className="flex flex-1 items-center justify-end space-x-4">
-          <ThemeToggle />
           {loading ? (
             <div className="h-9 w-28 animate-pulse rounded-md bg-slate-200" />
           ) : user ? (
@@ -40,20 +39,18 @@ export function Header() {
             </div>
           ) : (
             <div className="flex items-center space-x-3">
-              <div className="hidden lg:flex flex-col text-right leading-tight">
-                <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+              <Link 
+                to="/login" 
+                className="hidden lg:flex flex-col text-right leading-tight hover:opacity-80 transition-opacity cursor-pointer"
+              >
+                <span className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                   Returning user?
                 </span>
-                <span className="text-sm text-slate-600">
+                <span className="text-sm text-brand-600 dark:text-brand-400 font-medium">
                   Access your portal
                 </span>
-              </div>
-              <Button variant="ghost" asChild>
-                <Link to="/login">Log In</Link>
-              </Button>
-              <Button asChild>
-                <Link to="/assessment">Start Assessment</Link>
-              </Button>
+              </Link>
+              <AssessmentCTA variant="primary" size="md" />
             </div>
           )}
         </div>

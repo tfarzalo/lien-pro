@@ -23,15 +23,43 @@ interface AssessmentQuestion {
 
 const sampleQuestions: AssessmentQuestion[] = [
     {
+        id: 'claim_type',
+        question: 'What type of claim do you need to file?',
+        type: 'radio',
+        options: [
+            'Mechanics Lien - I worked on a private property project',
+            'Payment Bond Claim - I worked on a public/government project',
+            'Not sure - Help me determine which one'
+        ],
+        helpText: 'Private property projects use mechanics liens. Public/government projects require payment bond claims.',
+        required: true
+    },
+    {
+        id: 'project_owner',
+        question: 'Who owns the property where you worked?',
+        type: 'radio',
+        options: [
+            'Private individual or business',
+            'City, county, or municipal government',
+            'State of Texas',
+            'Federal government (U.S. government)',
+            'School district or public institution',
+            'Not sure'
+        ],
+        helpText: 'Property ownership determines whether you file a lien (private) or bond claim (public).',
+        required: true
+    },
+    {
         id: 'project_type',
         question: 'What type of construction project is this?',
         type: 'radio',
         options: [
-            'Residential (single-family home)',
-            'Residential (multi-family/apartment)',
+            'Residential - single-family home',
+            'Residential - multi-family/apartment',
             'Commercial building',
             'Industrial facility',
-            'Public/government project',
+            'Public infrastructure (roads, bridges, etc.)',
+            'Government building',
             'Other'
         ],
         helpText: 'The project type affects which lien laws apply and filing requirements.',
@@ -42,27 +70,28 @@ const sampleQuestions: AssessmentQuestion[] = [
         question: 'Who did you contract with directly?',
         type: 'radio',
         options: [
-            'Property owner',
+            'Property owner directly',
             'General contractor',
             'Another subcontractor',
             'Property management company',
+            'Government agency',
             'Not sure'
         ],
-        helpText: 'Your relationship to the property owner determines your lien rights.',
+        helpText: 'Your relationship to the property owner determines your lien or bond claim rights.',
         required: true
     },
     {
         id: 'work_start_date',
         question: 'When did you first start work or deliver materials?',
         type: 'date',
-        helpText: 'This date starts many important deadlines under Texas lien law.',
+        helpText: 'This date starts many important deadlines under Texas construction law.',
         required: true
     },
     {
         id: 'last_work_date',
         question: 'When did you last perform work or deliver materials?',
         type: 'date',
-        helpText: 'Your mechanics lien must be filed within specific timeframes after your last work date.',
+        helpText: 'For liens: must file within 4 months after last work. For bonds: notice deadlines are critical.',
         required: true
     },
     {
@@ -83,21 +112,21 @@ const sampleQuestions: AssessmentQuestion[] = [
             'Email or text confirmation',
             'No formal agreement'
         ],
-        helpText: 'A written contract strengthens your lien rights and makes enforcement easier.',
+        helpText: 'A written contract strengthens your legal position for both liens and bond claims.',
         required: true
     },
     {
         id: 'preliminary_notice_sent',
-        question: 'Have you sent any preliminary notices or lien warnings?',
+        question: 'Have you sent any preliminary notices or required notices?',
         type: 'radio',
         options: [
-            'Yes, within required timeframe',
+            'Yes, sent within required timeframes',
             'Yes, but might be late',
-            'No, but I plan to',
-            'No, and I\'m past deadlines',
-            'Not sure what this is'
+            'No, but I plan to send them',
+            'No, and deadlines may have passed',
+            'Not sure what notices are required'
         ],
-        helpText: 'Preliminary notices protect your lien rights and are required in some situations.',
+        helpText: 'For liens: subcontractors must send notices. For bonds: monthly notices may be required.',
         required: true
     },
     {
@@ -108,7 +137,7 @@ const sampleQuestions: AssessmentQuestion[] = [
             'Yes, multiple written demands',
             'Yes, one written demand',
             'Only verbal requests',
-            'Haven\'t requested yet'
+            'Haven\'t requested payment yet'
         ],
         helpText: 'Documentation of payment demands strengthens your legal position.',
         required: true
@@ -170,6 +199,7 @@ const contactQuestions: AssessmentQuestion[] = [
 ]
 
 const questionIconMap: Record<string, LucideIcon> = {
+    claim_type: Building2,
     project_type: Building2,
     contract_party: Users,
     work_start_date: CalendarDays,
@@ -741,7 +771,7 @@ export function AssessmentPage() {
                 <div className="bg-card border-b border-slate-200 dark:border-slate-800">
                     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                         <div className="flex items-center justify-between">
-                            <Link to="/" className="text-brand-600 hover:text-brand-700 flex items-center">
+                            <Link to="/lien-professor" className="text-brand-600 hover:text-brand-700 flex items-center">
                                 <ArrowLeft className="h-4 w-4 mr-2" />
                                 Home
                             </Link>
@@ -1017,7 +1047,7 @@ export function AssessmentPage() {
                         aria-hidden={showIntroOverlay}
                     >
                         <Link
-                            to="/"
+                            to="/lien-professor"
                             className="flex items-center text-brand-600 hover:text-brand-700 font-medium"
                         >
                             <ArrowLeft className="h-4 w-4 mr-2" />

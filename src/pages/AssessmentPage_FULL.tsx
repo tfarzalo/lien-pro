@@ -624,7 +624,7 @@ export function AssessmentPage() {
                 <div className="bg-white border-b border-slate-200">
                     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
                         <div className="flex items-center justify-between">
-                            <Link to="/" className="text-brand-600 hover:text-brand-700 flex items-center">
+                            <Link to="/lien-professor" className="text-brand-600 hover:text-brand-700 flex items-center">
                                 <ArrowLeft className="h-4 w-4 mr-2" />
                                 Home
                             </Link>
@@ -888,7 +888,7 @@ export function AssessmentPage() {
                 {/* Header with Back to Home */}
                 <div className="mb-8 flex items-center justify-between">
                     <Link
-                        to="/"
+                        to="/lien-professor"
                         className="flex items-center text-brand-600 hover:text-brand-700 font-medium"
                     >
                         <ArrowLeft className="h-4 w-4 mr-2" />

@@ -41,21 +41,21 @@ const mistakes = [
 ];
 
 export const Top5MistakesSection: React.FC = () => {
-  return (
-    <section className="py-12 bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    return (
+        <section className="py-10 bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="text-center mb-12">
+                <div className="text-center mb-10">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-950/50 mb-4">
                         <AlertTriangle className="h-5 w-5 text-amber-600 dark:text-amber-400" />
                         <span className="text-sm font-semibold text-amber-700 dark:text-amber-300 uppercase tracking-wide">
                             Avoid These Critical Errors
                         </span>
                     </div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4">
                         The 5 Biggest Construction Lien Filing Mistakes
                     </h2>
-                    <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+                    <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
                         Learn what NOT to do when protecting your payment rights. These common mistakes can invalidate your entire claim.
                     </p>
                 </div>
@@ -78,10 +78,10 @@ export const Top5MistakesSection: React.FC = () => {
                             </div>
 
                             {/* Content */}
-                            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
                                 {mistake.title}
                             </h3>
-                            <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            <p className="text-base text-slate-600 dark:text-slate-400 leading-relaxed">
                                 {mistake.description}
                             </p>
                         </div>

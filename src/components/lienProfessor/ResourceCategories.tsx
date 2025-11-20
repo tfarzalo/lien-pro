@@ -12,6 +12,7 @@ import {
     Scale,
     MessageSquare
 } from 'lucide-react';
+import { AssessmentCTA } from '@/components/common/AssessmentCTA';
 
 const privateProjectResources = [
     {
@@ -57,13 +58,13 @@ const privateProjectResources = [
         description: 'Enforcement options when liens aren\'t enough',
         link: '/learn',
     },
-  {
-    icon: MessageSquare,
-    title: 'Ask a Lawyer',
-    description: 'Get expert legal advice for your specific situation',
-    link: '/assessment',
-    badge: 'Free',
-  },
+    {
+        icon: MessageSquare,
+        title: 'Ask a Lawyer',
+        description: 'Get expert legal advice for your specific situation',
+        link: '/assessment',
+        badge: 'Free',
+    },
 ];
 
 const governmentProjectResources = [
@@ -119,15 +120,15 @@ const governmentProjectResources = [
 ];
 
 export const ResourceCategoriesSection: React.FC = () => {
-  return (
-    <section className="py-12 bg-white dark:bg-slate-950">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    return (
+        <section className="py-10 bg-white dark:bg-slate-950">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
-                <div className="text-center mb-12">
+                <div className="text-center mb-10">
                     <p className="text-sm uppercase tracking-[0.2em] text-brand-500 font-semibold mb-4">
                         Comprehensive Resources
                     </p>
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-4">
                         Tools & Guides by Project Type
                     </h2>
                     <p className="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
@@ -214,12 +215,11 @@ export const ResourceCategoriesSection: React.FC = () => {
                 {/* Bottom CTA */}
                 <div className="mt-12 text-center">
                     <div className="inline-flex flex-col sm:flex-row gap-4">
-                        <Link
-                            to="/assessment"
-                            className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-brand-600 text-white font-semibold shadow-lg hover:bg-brand-500 transition-colors"
-                        >
-                            Start Free Assessment
-                        </Link>
+                        <AssessmentCTA 
+                            variant="primary" 
+                            size="lg" 
+                            className="shadow-lg"
+                        />
                         <Link
                             to="/learn"
                             className="inline-flex items-center justify-center px-6 py-3 rounded-xl border-2 border-brand-300 text-brand-700 dark:text-brand-400 dark:border-brand-700 font-semibold hover:bg-brand-50 dark:hover:bg-slate-900 transition-colors"

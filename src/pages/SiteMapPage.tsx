@@ -22,6 +22,7 @@ const sections: RouteSection[] = [
       { path: '/lien-professor', label: 'Lien Professor Landing', description: 'New sales-focused marketing page.' },
       { path: '/assessment', label: 'Interactive Assessment', description: 'Begin the guided lien assessment.' },
       { path: '/kits', label: 'Browse Lien Kits', description: 'Explore lien document kits by state/project.' },
+      { path: '/bond-kits', label: 'Browse Bond Kits', description: 'Explore payment bond claim kits for public projects.' },
       { path: '/learn', label: 'Learn Center', description: 'Education hub with lien law articles.' },
       { path: '/learn/what-is-a-lien', label: 'What Is a Lien?', description: 'Breakdown of the basics.' },
       { path: '/learn/who-can-file', label: 'Who Can File', description: 'Eligibility overview for lien filings.' },

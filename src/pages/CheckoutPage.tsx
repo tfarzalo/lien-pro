@@ -1,12 +1,6 @@
-// =====================================================
-// Checkout Page
-// Handles kit purchase flow with test payment
-// =====================================================
-
 import { useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { AppShell } from '@/components/layout/AppShell'
-import { PageHeader } from '@/components/layout/PageHeader'
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Input } from '@/components/ui/Input'
@@ -90,11 +84,6 @@ export function CheckoutPage() {
 
     // Handle checkout
     const handleCheckout = async () => {
-        if (!user) {
-            navigate('/login')
-            return
-        }
-
         if (checkoutItems.length === 0) {
             setError('Please select at least one kit to purchase')
             return
@@ -102,7 +91,7 @@ export function CheckoutPage() {
 
         // Validate payment details
         if (!paymentDetails.cardNumber || !paymentDetails.name || !paymentDetails.email) {
-            setError('Please fill in all payment details')
+            setError('Please fill in all required payment details')
             return
         }
 
@@ -110,35 +99,17 @@ export function CheckoutPage() {
         setError('')
 
         try {
-            // Process test payment
+            // Process payment (works for both authenticated and guest users in test mode)
             const order = await processPayment.mutateAsync(selectedKitIds)
 
             // Redirect to success page
             navigate(`/checkout/success?order=${order.id}`)
         } catch (err) {
             console.error('Payment failed:', err)
-            setError(err instanceof Error ? err.message : 'Payment processing failed')
+            setError(err instanceof Error ? err.message : 'Payment processing failed. Please try again.')
         } finally {
             setIsProcessing(false)
         }
-    }
-
-    if (!user) {
-        return (
-            <AppShell>
-                <div className="max-w-2xl mx-auto py-12 text-center">
-                    <Alert variant="info">
-                        <AlertCircle className="h-4 w-4" />
-                        <AlertDescription>
-                            Please sign in to complete your purchase.
-                        </AlertDescription>
-                    </Alert>
-                    <Button className="mt-4" onClick={() => navigate('/login')}>
-                        Sign In
-                    </Button>
-                </div>
-            </AppShell>
-        )
     }
 
     if (checkoutItems.length === 0) {
@@ -165,11 +136,6 @@ export function CheckoutPage() {
 
     return (
         <AppShell>
-            <PageHeader
-                title="Checkout"
-                subtitle="Complete your purchase securely"
-            />
-
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Main Content - Order Summary & Payment */}
@@ -326,6 +292,69 @@ export function CheckoutPage() {
                                 </div>
                             </CardContent>
                         </Card>
+
+                        {/* Account Options */}
+                        {!user && (
+                            <Card className="border-brand-200 bg-brand-50/30">
+                                <CardHeader>
+                                    <CardTitle className="flex items-center text-brand-900">
+                                        <Check className="mr-2 h-5 w-5 text-brand-600" />
+                                        Create Your Account
+                                    </CardTitle>
+                                </CardHeader>
+                                <CardContent className="space-y-4">
+                                    <p className="text-sm text-slate-700">
+                                        Create an account to access your purchased kits, learning center, and optional management tools.
+                                    </p>
+
+                                    <div className="space-y-3">
+                                        <div className="flex items-start p-3 bg-white rounded-lg border border-slate-200">
+                                            <input type="radio" name="accountType" id="basic" className="mt-1 mr-3" defaultChecked />
+                                            <div className="flex-1">
+                                                <label htmlFor="basic" className="font-semibold text-slate-900 cursor-pointer">
+                                                    Basic Access (Free)
+                                                </label>
+                                                <p className="text-xs text-slate-600 mt-1">
+                                                    • Download your purchased kits<br />
+                                                    • Full learning center access<br />
+                                                    • Resource library
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <div className="flex items-start p-3 bg-white rounded-lg border-2 border-brand-300">
+                                            <input type="radio" name="accountType" id="premium" className="mt-1 mr-3" />
+                                            <div className="flex-1">
+                                                <label htmlFor="premium" className="font-semibold text-slate-900 cursor-pointer">
+                                                    + Lien Management Tool
+                                                    <span className="ml-2 text-xs bg-brand-100 text-brand-700 px-2 py-0.5 rounded-full">
+                                                        +$19/month
+                                                    </span>
+                                                </label>
+                                                <p className="text-xs text-slate-600 mt-1">
+                                                    • Everything in Basic, plus:<br />
+                                                    • Automated deadline tracking<br />
+                                                    • Document management<br />
+                                                    • Email reminders
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <Label htmlFor="password">Create Password (optional)</Label>
+                                        <Input
+                                            id="password"
+                                            type="password"
+                                            placeholder="Leave blank to receive a setup link via email"
+                                        />
+                                        <p className="text-xs text-slate-500 mt-1">
+                                            Or we'll email you a secure link to set your password after purchase
+                                        </p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        )}
 
                         {/* Error Message */}
                         {error && (

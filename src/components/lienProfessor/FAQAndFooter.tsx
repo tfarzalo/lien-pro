@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
+import { AssessmentCTA } from '@/components/common/AssessmentCTA';
 
 const faqs = [
   {
@@ -14,9 +15,9 @@ const faqs = [
       'Our attorney-drafted kits guide you through filing, but they do not replace a lawyer. Get attorney review or full representation when you want legal advice specific to your project.',
   },
   {
-    question: 'Which states do you cover?',
+    question: 'What areas does Lien Professor cover?',
     answer:
-      'We currently provide detailed guidance for Texas along with templates for key states. New states are added based on demand—contact us if you need another jurisdiction.',
+      'We currently specialize in Texas construction lien and bond law. Our forms, guides, and educational content are specifically tailored to Texas requirements and deadlines.',
   },
   {
     question: 'Can I reuse my lien kit on multiple projects?',
@@ -30,17 +31,17 @@ const faqs = [
 ];
 
 export const FAQSection: React.FC = () => (
-  <section className="py-16 bg-slate-50 dark:bg-slate-900 rounded-[2.5rem]">
+  <section className="py-12 bg-slate-50 dark:bg-slate-900 rounded-[2.5rem]">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       <div className="text-center space-y-3">
         <p className="text-sm uppercase tracking-[0.2em] text-brand-600 font-semibold">Frequently Asked Questions</p>
-        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Answers for lien and bond questions</h2>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">Answers for lien and bond questions</h2>
       </div>
       <div className="space-y-4">
         {faqs.map((faq) => (
           <div key={faq.question} className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950/80 p-6 shadow-sm">
-            <p className="text-lg font-semibold text-slate-900 dark:text-white">{faq.question}</p>
-            <p className="text-sm text-slate-600 dark:text-slate-300 mt-2">{faq.answer}</p>
+            <p className="text-xl font-semibold text-slate-900 dark:text-white">{faq.question}</p>
+            <p className="text-base text-slate-600 dark:text-slate-300 mt-2">{faq.answer}</p>
           </div>
         ))}
       </div>
@@ -49,19 +50,18 @@ export const FAQSection: React.FC = () => (
 );
 
 export const FinalCTASection: React.FC = () => (
-  <section className="py-16">
+  <section className="py-12">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 rounded-3xl bg-gradient-to-br from-brand-600 to-brand-700 text-white p-10 text-center space-y-4 shadow-xl shadow-brand-700/40">
-      <h2 className="text-3xl font-bold">Ready to Protect Your Payment Rights?</h2>
-      <p className="text-white/80">
+      <h2 className="text-4xl md:text-5xl font-bold">Ready to Protect Your Payment Rights?</h2>
+      <p className="text-xl text-white/80">
         Take the free assessment to discover what liens you can file on your project.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <Link
-          to="/assessment"
-          className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-white text-brand-700 font-semibold shadow hover:bg-slate-100"
-        >
-          Start Free Assessment
-        </Link>
+        <AssessmentCTA 
+          variant="secondary" 
+          size="lg" 
+          className="bg-white text-brand-700 hover:bg-slate-100 shadow"
+        />
         <Link to="/contact" className="text-white/80 hover:text-white text-sm font-semibold underline underline-offset-4 whitespace-nowrap">
           Talk with a Lawyer
         </Link>
@@ -93,10 +93,10 @@ export const SiteFooter: React.FC = () => {
           <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
             {/* Logo & Copyright */}
             <div className="flex items-center gap-4">
-              <img 
-                src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-icon.png" 
-                alt="Lien Professor" 
-                className="h-12 w-12 rounded-lg" 
+              <img
+                src="https://uhmdffjniyugmcdaiedt.supabase.co/storage/v1/object/public/application-assets/lien-professor-icon.png"
+                alt="Lien Professor"
+                className="h-12 w-12 rounded-lg"
               />
               <div>
                 <p className="text-lg font-bold text-slate-900 dark:text-white">Lien Professor</p>
@@ -105,41 +105,75 @@ export const SiteFooter: React.FC = () => {
                 </p>
               </div>
             </div>
-            
+
             {/* Navigation Links */}
             <div className="flex flex-wrap gap-6 text-sm">
-              <Link 
-                to="/terms" 
+              <Link
+                to="/terms"
                 className="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors duration-200 hover:underline underline-offset-4"
               >
                 Terms of Service
               </Link>
-              <Link 
-                to="/privacy" 
+              <Link
+                to="/privacy"
                 className="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors duration-200 hover:underline underline-offset-4"
               >
                 Privacy Policy
               </Link>
-              <Link 
-                to="/disclaimers" 
+              <Link
+                to="/disclaimers"
                 className="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors duration-200 hover:underline underline-offset-4"
               >
                 Legal Disclaimers
               </Link>
-              <Link 
-                to="/contact" 
+              <Link
+                to="/contact"
                 className="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors duration-200 hover:underline underline-offset-4"
               >
                 Contact Us
               </Link>
             </div>
           </div>
-          
+
+          {/* Admin Links Section */}
+          <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div>
+                <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
+                  Admin & Resources
+                </h3>
+                <div className="flex flex-wrap gap-4 text-sm">
+                  <Link
+                    to="/lien-professor"
+                    className="text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-200 hover:underline underline-offset-4 flex items-center gap-1"
+                  >
+                    <span>📋</span>
+                    Application Page Map
+                  </Link>
+                  <Link
+                    to="/admin"
+                    className="text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-200 hover:underline underline-offset-4 flex items-center gap-1"
+                  >
+                    <span>⚙️</span>
+                    Admin Panel
+                  </Link>
+                  <Link
+                    to="/dashboard"
+                    className="text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-200 hover:underline underline-offset-4 flex items-center gap-1"
+                  >
+                    <span>🏠</span>
+                    User Dashboard
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Additional Legal Text */}
           <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800">
             <p className="text-xs text-slate-500 dark:text-slate-500 leading-relaxed max-w-4xl">
-              Lien Professor is a legal technology platform developed by Lovein Ribman P.C. 
-              The information provided is for general informational purposes and does not constitute legal advice. 
+              Lien Professor is a legal technology platform developed by Lovein Ribman P.C.
+              The information provided is for general informational purposes and does not constitute legal advice.
               Consult with a qualified attorney for specific legal guidance.
             </p>
           </div>

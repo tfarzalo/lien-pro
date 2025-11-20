@@ -20,10 +20,10 @@ export function OrderSuccessPage() {
 
     const { data: orderData, isLoading, error } = useOrderDetails(orderId || undefined)
 
-    // Redirect to home if no order ID
+    // Redirect to landing page if no order ID
     useEffect(() => {
         if (!orderId) {
-            navigate('/')
+            navigate('/lien-professor')
         }
     }, [orderId, navigate])
 
@@ -213,7 +213,7 @@ export function OrderSuccessPage() {
                     <Button
                         size="lg"
                         variant="secondary"
-                        onClick={() => navigate('/')}
+                        onClick={() => navigate('/lien-professor')}
                         className="w-full sm:w-auto"
                     >
                         <Home className="mr-2 h-4 w-4" />

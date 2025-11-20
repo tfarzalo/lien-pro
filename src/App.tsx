@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import { ErrorBoundary } from './components/common/ErrorBoundary';
 import { ScrollToTop } from './components/common/ScrollToTop';
@@ -9,6 +9,9 @@ import { AssessmentPage } from './pages/AssessmentPage';
 import { CheckoutPage } from './pages/CheckoutPage';
 import { OrderSuccessPage } from './pages/OrderSuccessPage';
 import BrowseKitsPage from './pages/BrowseKitsPage';
+import BondKitsPage from './pages/BondKitsPage';
+import AllKitsPage from './pages/AllKitsPage';
+import KitDetailsPage from './pages/KitDetailsPage';
 import FormCompletionPage from './pages/FormCompletionPage';
 import AuthPage from './pages/AuthPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -37,12 +40,18 @@ function App() {
         <Routes>
           <Route element={<SiteLayout />}>
             {/* Public Routes */}
-            <Route path="/" element={<SiteMapPage />} />
+            <Route path="/" element={<Navigate to="/lien-professor" replace />} />
+            <Route path="/sitemap" element={<SiteMapPage />} />
             <Route path="/landing" element={<LandingPage />} />
             <Route path="/lien-professor" element={<LienProfessorLanding />} />
             <Route path="/login" element={<AuthPage />} />
             <Route path="/assessment" element={<AssessmentPage />} />
-            <Route path="/kits" element={<BrowseKitsPage />} />
+            <Route path="/kits" element={<AllKitsPage />} />
+            <Route path="/kits/:kitId" element={<KitDetailsPage />} />
+            <Route path="/lien-kits" element={<BrowseKitsPage />} />
+            <Route path="/bond-kits" element={<BondKitsPage />} />
+            <Route path="/bond-kits/:kitId" element={<KitDetailsPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
 
             {/* Learn/Education Routes */}
             <Route path="/learn" element={<LearnLayout />}>
@@ -57,7 +66,6 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="/dashboard" element={<EnhancedDashboardPage />} />
               <Route path="/dashboard-old" element={<DashboardPage />} />
-              <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/checkout/success" element={<OrderSuccessPage />} />
               <Route path="/projects/:projectId/forms/:formId" element={<FormCompletionPage />} />
             </Route>

@@ -1,15 +1,16 @@
 import { Button } from '@/components/ui/Button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card'
 import { Badge } from '@/components/ui/Badge'
-import { ArrowRight, BookOpen, CheckCircle, AlertTriangle, Scale, Clock, Shield } from 'lucide-react'
+import { BookOpen, CheckCircle, AlertTriangle, Scale, Clock, Shield } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { AssessmentCTA } from '@/components/common/AssessmentCTA'
 
 export function WhatIsALienPage() {
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 transition-colors">
+        <div className="min-h-screen">
             {/* Hero Section */}
             <section className="py-8 md:py-10">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="max-w-5xl mx-auto">
                     <div className="rounded-3xl bg-gradient-to-br from-brand-600 to-brand-700 text-white p-10 shadow-2xl shadow-brand-900/30">
                         <div className="flex items-center gap-3 mb-6">
                             <BookOpen className="h-8 w-8" />
@@ -29,7 +30,7 @@ export function WhatIsALienPage() {
             </section>
 
             {/* Main Content */}
-            <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-12">
+            <div className="max-w-5xl mx-auto pb-12">
 
                 {/* Quick Answer Section */}
                 <Card className="mb-8 border-brand-200 bg-brand-50">
@@ -485,17 +486,11 @@ export function WhatIsALienPage() {
                             </p>
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Button
+                                <AssessmentCTA
                                     size="lg"
                                     variant="secondary"
                                     className="text-lg px-8 py-4"
-                                    asChild
-                                >
-                                    <Link to="/assessment">
-                                        Start Free Assessment
-                                        <ArrowRight className="ml-2 h-5 w-5" />
-                                    </Link>
-                                </Button>
+                                />
 
                                 <Button
                                     size="lg"

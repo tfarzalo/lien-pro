@@ -18,9 +18,13 @@ export function MainNav({ items = [], activePath }: MainNavProps) {
         return activePath.startsWith(href);
     };
 
+    // Determine home link based on current path
+    // Default to landing page for all sections
+    const homeLink = '/lien-professor';
+
     return (
         <div className="flex items-center gap-6 md:gap-10">
-            <Link to="/" className="flex items-center space-x-2">
+            <Link to={homeLink} className="flex items-center space-x-2">
                 {/* Desktop: Full logo with text */}
                 <Icons.logoFull className="hidden md:block h-12 w-auto" />
                 {/* Mobile: Icon only */}

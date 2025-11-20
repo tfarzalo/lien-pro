@@ -93,8 +93,7 @@ export function LearnLayout() {
     const location = useLocation()
 
     return (
-        <div className="min-h-screen bg-background text-foreground transition-colors">
-
+        <div className="min-h-screen bg-slate-50 dark:bg-slate-900 text-foreground transition-colors">
             <div className="container mx-auto px-4 py-8">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     {/* Sidebar Navigation */}

@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import { Header } from './Header'
+import { SiteFooter } from '@/components/lienProfessor/FAQAndFooter'
 
 export function SiteLayout() {
     return (
@@ -8,6 +9,7 @@ export function SiteLayout() {
             <main className="flex-1">
                 <Outlet />
             </main>
+            <SiteFooter />
         </div>
     )
 }

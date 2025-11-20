@@ -13,11 +13,11 @@ const CardArrow: React.FC = () => (
 );
 
 export const ResourceLibrarySection: React.FC = () => (
-  <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+  <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div className="text-center max-w-3xl mx-auto mb-10">
       <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-600">Free Law Library</p>
-      <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-4">Learn Your Lien Rights Before You Take Action</h2>
-      <p className="text-lg text-slate-600 mt-4">
+      <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mt-4">Learn Your Lien Rights Before You Take Action</h2>
+      <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-300 mt-4">
         The Lien Professor™ offers free online summaries of lien and payment bond claim law for each project state, with practice
         pointers, deadlines, and examples to help you plan next steps.
       </p>

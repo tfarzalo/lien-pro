@@ -20,7 +20,7 @@ export const siteConfig = {
     headerNav: [
         {
             title: "Home",
-            href: "/",
+            href: "/lien-professor",
             audience: "all",
         },
         {
@@ -31,6 +31,11 @@ export const siteConfig = {
         {
             title: "Lien Kits",
             href: "/kits",
+            audience: "all",
+        },
+        {
+            title: "Bond Kits",
+            href: "/bond-kits",
             audience: "all",
         },
         {
