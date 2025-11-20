@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 type RouteEntry = {
   path: string;
@@ -66,8 +67,8 @@ const SiteMapPage: React.FC = () => {
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
       <header className="space-y-4 text-center">
         <p className="text-sm uppercase tracking-[0.2em] text-emerald-500 font-semibold">Navigation Overview</p>
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900">Explore Every Page in The Lien Professor</h1>
-        <p className="text-slate-600 max-w-2xl mx-auto">
+        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Explore Every Page in The Lien Professor</h1>
+        <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
           Use this temporary site map to jump directly to any public, customer, or admin experience. Protected routes
           still require the proper authentication, but they are included for quick reference.
         </p>
@@ -77,28 +78,28 @@ const SiteMapPage: React.FC = () => {
         {sections.map((section) => (
           <section key={section.title} className="space-y-4">
             <div>
-              <h2 className="text-xl font-semibold text-slate-900">{section.title}</h2>
-              <p className="text-sm text-slate-500">Routes currently available inside the application.</p>
+              <h2 className="text-xl font-semibold text-slate-900 dark:text-white">{section.title}</h2>
+              <p className="text-sm text-slate-500 dark:text-slate-400">Routes currently available inside the application.</p>
             </div>
             <ul className="space-y-4">
               {section.routes.map((route) => (
                 <li
                   key={route.path}
-                  className="rounded-2xl border border-slate-200 bg-white shadow-sm p-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
+                  className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm p-5 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
                 >
                   <div>
-                    <p className="text-base font-semibold text-slate-900">{route.label}</p>
-                    <p className="text-sm text-slate-500">{route.description}</p>
+                    <p className="text-base font-semibold text-slate-900 dark:text-white">{route.label}</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">{route.description}</p>
                   </div>
                   {route.dynamic ? (
-                    <code className="text-sm text-slate-600 bg-slate-100 rounded px-3 py-1">{route.path}</code>
+                    <code className="text-sm text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-900 rounded px-3 py-1">{route.path}</code>
                   ) : (
-                    <a
-                      href={route.path}
+                    <Link
+                      to={route.path}
                       className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-emerald-600 rounded-lg hover:bg-emerald-500 transition"
                     >
                       Visit
-                    </a>
+                    </Link>
                   )}
                 </li>
               ))}
