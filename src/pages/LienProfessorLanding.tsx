@@ -16,12 +16,12 @@ const LienProfessorLanding: React.FC = () => {
       <HeroSection />
       <main className="space-y-0">
         {/* How It Works */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <HowItWorksSection />
         </div>
 
         {/* Solution Cards */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <SolutionCardsSection />
         </div>
 
@@ -29,7 +29,7 @@ const LienProfessorLanding: React.FC = () => {
         <Top5MistakesSection />
 
         {/* Why Lien Professor */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <WhyLienProfessorSection />
         </div>
 
@@ -37,35 +37,33 @@ const LienProfessorLanding: React.FC = () => {
         <ResourceCategoriesSection />
 
         {/* Resource Library */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <ResourceLibrarySection />
         </div>
 
         {/* Free Lien Document */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <FreeLienDocumentSection />
         </div>
 
         {/* Testimonials */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <TestimonialsSection />
         </div>
 
         {/* FAQ */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <FAQSection />
         </div>
 
         {/* Final CTA */}
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <FinalCTASection />
         </div>
       </main>
 
-      {/* Footer */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SiteFooter />
-      </div>
+      {/* Footer - Full Width */}
+      <SiteFooter />
     </div>
   );
 };

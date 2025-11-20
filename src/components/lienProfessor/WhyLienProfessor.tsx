@@ -1,4 +1,5 @@
 import React from 'react';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const features = [
   {
@@ -41,28 +42,41 @@ const FeatureIcon: React.FC = () => (
   </span>
 );
 
-export const WhyLienProfessorSection: React.FC = () => (
-  <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div className="max-w-3xl mx-auto text-center mb-12">
+export const WhyLienProfessorSection: React.FC = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.15 });
+  
+  return (
+  <section ref={ref as React.RefObject<HTMLElement>} className="max-w-screen-2xl mx-auto px-6 py-8">
+    <div className={`max-w-3xl mx-auto text-center mb-12 transition-all duration-700 ${
+      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+    }`}>
       <p className="text-sm uppercase tracking-[0.2em] text-brand-600 font-semibold">Why The Lien Professor</p>
-      <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-4">
-        Created by Construction Lawyers, Built for the Construction Industry
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-white mt-4 leading-tight">
+        Created by Construction Lawyers, Built for the Construction&nbsp;Industry
       </h2>
-      <p className="text-lg text-slate-600 mt-4">
-        The Lien Professor™ combines clear education, reusable attorney-drafted documents, and direct access to construction lawyers so you
-        can protect your payment rights with confidence.
+      <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 mt-4 leading-relaxed">
+        The Lien Professor™ combines clear education, reusable attorney-drafted documents, and direct access to construction lawyers so you can protect your payment rights with&nbsp;confidence.
       </p>
     </div>
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {features.map((feature) => (
-        <div key={feature.title} className="rounded-2xl border border-slate-200 bg-white/70 p-6 shadow-sm">
-          <FeatureIcon />
-          <h3 className="text-xl font-semibold text-slate-900 mt-4">{feature.title}</h3>
-          <p className="text-sm text-slate-600 mt-2">{feature.description}</p>
+    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+      {features.map((feature, index) => (
+        <div 
+          key={feature.title} 
+          className={`group rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm p-6 lg:p-8 shadow-sm hover:shadow-xl hover:border-brand-300 dark:hover:border-brand-700 hover:-translate-y-2 transition-all duration-700 ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
+          style={{ transitionDelay: `${index * 100}ms` }}
+        >
+          <div className="mb-4 transform group-hover:scale-110 transition-transform duration-300">
+            <FeatureIcon />
+          </div>
+          <h3 className="text-xl lg:text-2xl font-semibold text-slate-900 dark:text-white mb-3 leading-tight">{feature.title}</h3>
+          <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed">{feature.description}</p>
         </div>
       ))}
     </div>
   </section>
-);
+  );
+};
 
 export default WhyLienProfessorSection;

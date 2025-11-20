@@ -119,9 +119,9 @@ const governmentProjectResources = [
 ];
 
 export const ResourceCategoriesSection: React.FC = () => {
-    return (
-        <section className="py-16 bg-white dark:bg-slate-950">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  return (
+    <section className="py-12 bg-white dark:bg-slate-950">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-12">
                     <p className="text-sm uppercase tracking-[0.2em] text-brand-500 font-semibold mb-4">

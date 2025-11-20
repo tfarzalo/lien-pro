@@ -41,9 +41,9 @@ const mistakes = [
 ];
 
 export const Top5MistakesSection: React.FC = () => {
-    return (
-        <section className="py-16 bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  return (
+    <section className="py-12 bg-gradient-to-br from-red-50 via-white to-orange-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Header */}
                 <div className="text-center mb-12">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 dark:bg-red-950/50 mb-4">
