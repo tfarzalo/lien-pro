@@ -1,4 +1,4 @@
-import { useMemo } from 'react'
+import { useMemo, useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { MainNav } from './MainNav'
 import { UserNav } from './UserNav'
@@ -10,6 +10,16 @@ import { AssessmentCTA } from '@/components/common/AssessmentCTA'
 export function Header() {
   const { user, loading } = useAuth()
   const location = useLocation()
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const navItems = useMemo(() => {
     return siteConfig.headerNav.filter((item) => {
@@ -24,7 +34,11 @@ export function Header() {
   }, [user])
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className={`fixed top-0 z-50 w-full border-b transition-all duration-300 ${
+      scrolled 
+        ? 'border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60' 
+        : 'border-transparent bg-transparent'
+    }`}>
       <div className="container flex h-16 max-w-screen-2xl items-center">
         <MainNav items={navItems} activePath={location.pathname} />
         <div className="flex flex-1 items-center justify-end space-x-4">

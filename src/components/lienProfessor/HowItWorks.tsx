@@ -3,15 +3,15 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const steps = [
   {
-    title: 'Step 1 – Take the Assessment',
+    title: 'Take the Assessment',
     copy: 'Answer a few questions about your project, role, and payment issues. We’ll quickly map your situation to the right lien and payment bond rules for your state.',
   },
   {
-    title: 'Step 2 – Get Your Results',
+    title: 'Get Your Results',
     copy: 'See a clear summary of your lien rights, upcoming deadlines, and the recommended path: DIY lien kit, guided help, or full attorney representation.',
   },
   {
-    title: 'Step 3 – Choose Your Path',
+    title: 'Choose Your Path',
     copy: 'Download an attorney-drafted lien kit, request an attorney review, or retain a construction lawyer to handle everything from notices to filing and service.',
   },
 ];

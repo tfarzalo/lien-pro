@@ -49,6 +49,11 @@ export const siteConfig = {
             audience: "all",
         },
         {
+            title: "Contact",
+            href: "/contact",
+            audience: "all",
+        },
+        {
             title: "Dashboard",
             href: "/dashboard",
             audience: "authenticated",

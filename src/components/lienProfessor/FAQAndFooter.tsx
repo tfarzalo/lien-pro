@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUp } from 'lucide-react';
 import { AssessmentCTA } from '@/components/common/AssessmentCTA';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const faqs = [
   {
@@ -30,16 +31,23 @@ const faqs = [
   },
 ];
 
-export const FAQSection: React.FC = () => (
-  <section className="py-12 bg-slate-50 dark:bg-slate-900 rounded-[2.5rem]">
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-      <div className="text-center space-y-3">
-        <p className="text-sm uppercase tracking-[0.2em] text-brand-600 font-semibold">Frequently Asked Questions</p>
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">Answers for lien and bond questions</h2>
-      </div>
+export const FAQSection: React.FC = () => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+
+  return (
+    <section ref={ref as React.RefObject<HTMLElement>} className="py-8 bg-slate-50 dark:bg-slate-900 rounded-[2.5rem]">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+        <div className="text-center space-y-3">
+          <p className="text-sm uppercase tracking-[0.2em] text-brand-600 font-semibold">Frequently Asked Questions</p>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight">Answers for Lien<br />and Bond Questions</h2>
+        </div>
       <div className="space-y-4">
-        {faqs.map((faq) => (
-          <div key={faq.question} className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950/80 p-6 shadow-sm">
+        {faqs.map((faq, index) => (
+          <div 
+            key={faq.question} 
+            className={`rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950/80 p-6 shadow-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{ transitionDelay: `${index * 100}ms` }}
+          >
             <p className="text-xl font-semibold text-slate-900 dark:text-white">{faq.question}</p>
             <p className="text-base text-slate-600 dark:text-slate-300 mt-2">{faq.answer}</p>
           </div>
@@ -47,10 +55,11 @@ export const FAQSection: React.FC = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export const FinalCTASection: React.FC = () => (
-  <section className="py-12">
+  <section className="py-6 mt-4">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 rounded-3xl bg-gradient-to-br from-brand-600 to-brand-700 text-white p-10 text-center space-y-4 shadow-xl shadow-brand-700/40">
       <h2 className="text-4xl md:text-5xl font-bold">Ready to Protect Your Payment Rights?</h2>
       <p className="text-xl text-white/80">
@@ -62,7 +71,7 @@ export const FinalCTASection: React.FC = () => (
           size="lg"
           className="bg-white text-brand-700 hover:bg-slate-100 shadow"
         />
-        <Link to="/contact" className="text-white/80 hover:text-white text-sm font-semibold underline underline-offset-4 whitespace-nowrap">
+        <Link to="/learn" className="text-white/80 hover:text-white text-sm font-semibold underline underline-offset-4 whitespace-nowrap">
           Talk with a Lawyer
         </Link>
       </div>
@@ -108,24 +117,24 @@ export const SiteFooter: React.FC = () => {
 
             {/* Navigation Links */}
             <div className="flex flex-wrap gap-6 text-sm">
-              <Link
-                to="/terms"
+              <a
+                href="#"
                 className="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors duration-200 hover:underline underline-offset-4"
               >
                 Terms of Service
-              </Link>
-              <Link
-                to="/privacy"
+              </a>
+              <a
+                href="#"
                 className="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors duration-200 hover:underline underline-offset-4"
               >
                 Privacy Policy
-              </Link>
-              <Link
-                to="/disclaimers"
+              </a>
+              <a
+                href="#"
                 className="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors duration-200 hover:underline underline-offset-4"
               >
                 Legal Disclaimers
-              </Link>
+              </a>
               <Link
                 to="/contact"
                 className="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors duration-200 hover:underline underline-offset-4"
@@ -135,8 +144,8 @@ export const SiteFooter: React.FC = () => {
             </div>
           </div>
 
-          {/* Admin Links Section */}
-          <div className="mt-8 pt-8 border-t border-slate-200 dark:border-slate-800">
+          {/* Admin Links Section - Hidden */}
+          <div className="hidden mt-8 pt-8 border-t border-slate-200 dark:border-slate-800">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <h3 className="text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2">
@@ -144,7 +153,7 @@ export const SiteFooter: React.FC = () => {
                 </h3>
                 <div className="flex flex-wrap gap-4 text-sm">
                   <Link
-                    to="/lien-professor"
+                    to="/sitemap"
                     className="text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-200 hover:underline underline-offset-4 flex items-center gap-1"
                   >
                     <span>📋</span>

@@ -26,10 +26,10 @@ export function AssessmentCTA({
     if (completed) {
         return (
             <Link to="/assessment">
-                <Button variant={variant} size={size} className={className}>
-                    <CheckCircle className={showIcon ? "mr-2 h-4 w-4" : "hidden"} />
+                <Button variant={variant} size={size} className={`font-semibold ${className}`}>
+                    <CheckCircle className={showIcon ? "mr-2 h-5 w-5" : "hidden"} />
                     Review Your Results
-                    {showIcon && <ArrowRight className="ml-2 h-4 w-4" />}
+                    {showIcon && <ArrowRight className="ml-2 h-5 w-5" />}
                 </Button>
             </Link>
         );
@@ -37,9 +37,9 @@ export function AssessmentCTA({
 
     return (
         <Link to="/assessment">
-            <Button variant={variant} size={size} className={className}>
+            <Button variant={variant} size={size} className={`font-semibold ${className}`}>
                 Start Free Assessment
-                {showIcon && <ArrowRight className="ml-2 h-4 w-4" />}
+                {showIcon && <ArrowRight className="ml-2 h-5 w-5" />}
             </Button>
         </Link>
     );

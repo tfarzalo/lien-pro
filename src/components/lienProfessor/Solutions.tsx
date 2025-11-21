@@ -12,8 +12,8 @@ const cards = [
       'Checklists and sample language',
     ],
     price: 'Starting at $199',
-    cta: 'Browse Lien Kits',
-    href: '/kits',
+    cta: 'Browse DIY Kits',
+    href: '/kits/all',
     featured: false,
   },
   {
@@ -26,7 +26,7 @@ const cards = [
     ],
     price: 'Custom pricing per project',
     cta: 'Request Attorney Review',
-    href: '/contact',
+    href: '/learn',
     featured: true,
   },
   {
@@ -39,7 +39,7 @@ const cards = [
     ],
     price: 'With Lovein Ribman, P.C. Firm',
     cta: 'Talk with a Lawyer',
-    href: '/contact',
+    href: '/learn',
     featured: false,
   },
 ];

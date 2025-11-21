@@ -9,11 +9,24 @@ import { FreeLienDocumentSection } from '@/components/lienProfessor/FreeLienDocu
 import { TestimonialsSection } from '@/components/lienProfessor/Testimonials';
 import { FAQSection, FinalCTASection } from '@/components/lienProfessor/FAQAndFooter';
 import { PopularLienKitsSection } from '@/components/lienProfessor/PopularLienKits';
+import { MobileWarning } from '@/components/common/MobileWarning';
 
 const LienProfessorLanding: React.FC = () => {
   return (
-    <div className="bg-slate-50 dark:bg-slate-950 min-h-screen">
+    <>
+      <MobileWarning />
+      <div className="bg-slate-50 dark:bg-slate-950 min-h-screen">
       <HeroSection />
+      
+      {/* Industry Authority Banner */}
+      <div className="bg-white dark:bg-slate-900 py-12 border-y border-slate-200 dark:border-slate-800">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-brand-600 dark:text-brand-400 tracking-tight leading-none">
+            The Industry's LIEN Authority
+          </h2>
+        </div>
+      </div>
+      
       <main className="space-y-0">
         {/* How It Works */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -60,6 +73,7 @@ const LienProfessorLanding: React.FC = () => {
         </div>
       </main>
     </div>
+    </>
   );
 };
 

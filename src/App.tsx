@@ -31,6 +31,7 @@ import { ResidentialVsCommercialPage } from './pages/learn/ResidentialVsCommerci
 import { SiteLayout } from './components/layout/SiteLayout';
 import LienProfessorLanding from './pages/LienProfessorLanding';
 import SiteMapPage from './pages/SiteMapPage';
+import ContactPage from './pages/ContactPage';
 
 function App() {
   return (
@@ -44,9 +45,11 @@ function App() {
             <Route path="/sitemap" element={<SiteMapPage />} />
             <Route path="/landing" element={<LandingPage />} />
             <Route path="/lien-professor" element={<LienProfessorLanding />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/login" element={<AuthPage />} />
             <Route path="/assessment" element={<AssessmentPage />} />
             <Route path="/kits" element={<AllKitsPage />} />
+            <Route path="/kits/all" element={<AllKitsPage />} />
             <Route path="/kits/:kitId" element={<KitDetailsPage />} />
             <Route path="/lien-kits" element={<BrowseKitsPage />} />
             <Route path="/bond-kits" element={<BondKitsPage />} />
