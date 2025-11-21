@@ -1009,7 +1009,7 @@ export function AssessmentPage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 py-10 transition-colors">
+        <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950 pt-24 pb-10 transition-colors">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid gap-8 lg:grid-cols-12 relative">
                     {showIntroOverlay && (

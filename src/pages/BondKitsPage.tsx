@@ -62,15 +62,12 @@ export default function BondKitsPage() {
     const handlePurchase = (kitId: string) => {
         // Navigate to kit details page instead of forcing checkout
         navigate(`/bond-kits/${kitId}`);
-    };
-
-    return (
+    };    return (
         <div className="min-h-screen bg-slate-50">
-
             {/* Hero Section */}
-            <div className="bg-gradient-to-br from-blue-50 to-white py-16">
+            <div className="bg-gradient-to-br from-blue-50 to-white pt-24 pb-12">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 mb-4">
                         Professional Payment Bond Claim Kits
                     </h1>
                     <p className="text-xl text-slate-600 max-w-3xl mx-auto">

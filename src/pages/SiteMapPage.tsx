@@ -65,11 +65,11 @@ const sections: RouteSection[] = [
 
 const SiteMapPage: React.FC = () => {
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pt-24 space-y-10">
       <header className="space-y-4 text-center">
         <p className="text-sm uppercase tracking-[0.2em] text-emerald-500 font-semibold">Navigation Overview</p>
-        <h1 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white">Explore Every Page in The Lien Professor</h1>
-        <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">Explore Every Page in The Lien Professor</h1>
+        <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
           Use this temporary site map to jump directly to any public, customer, or admin experience. Protected routes
           still require the proper authentication, but they are included for quick reference.
         </p>

@@ -12,6 +12,9 @@ export function Header() {
   const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
 
+  // Check if we're on the landing page
+  const isLandingPage = location.pathname === '/lien-professor' || location.pathname === '/'
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
@@ -35,9 +38,11 @@ export function Header() {
 
   return (
     <header className={`fixed top-0 z-50 w-full border-b transition-all duration-300 ${
-      scrolled 
-        ? 'border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60' 
-        : 'border-transparent bg-transparent'
+      isLandingPage
+        ? scrolled 
+          ? 'border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60' 
+          : 'border-transparent bg-transparent'
+        : 'border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60'
     }`}>
       <div className="container flex h-16 max-w-screen-2xl items-center">
         <MainNav items={navItems} activePath={location.pathname} />
